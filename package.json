@@ -30,6 +30,7 @@
     "lodash": "^4.17.4",
     "login.dfe.api.auth": "github:DFE-Digital/login.dfe.api.auth",
     "login.dfe.config.schema": "github:DFE-Digital/login.dfe.config.schema#v3.1",
+    "login.dfe.healthcheck": "git+https://github.com/DFE-Digital/login.dfe.healthcheck.git#v1.3",
     "login.dfe.jwt-strategies": "^1.0.4",
     "morgan": "^1.9.0",
     "request-promise": "^4.2.2",

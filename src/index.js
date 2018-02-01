@@ -10,6 +10,7 @@ const path = require('path');
 const config = require('./infrastructure/config');
 const userAssertions = require('./app/assertions');
 const { samlAssertionsApi, validateConfigAndQuitOnError } = require('login.dfe.config.schema');
+const healthCheck = require('login.dfe.healthcheck');
 
 validateConfigAndQuitOnError(samlAssertionsApi, config, logger);
 
@@ -26,6 +27,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, 'app'));
 app.use(expressLayouts);
 app.set('layout', 'layouts/layout');
+
+app.use('/healthcheck', healthCheck({ config }));
 app.use('/users', userAssertions);
 
 if (config.hostingEnvironment.env === 'dev') {
