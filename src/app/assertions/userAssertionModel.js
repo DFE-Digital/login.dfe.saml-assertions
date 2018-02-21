@@ -25,6 +25,12 @@ class userAssertionModel {
   set Issuer(value) {
     this.id = value;
   }
+  set ktsId(value) {
+    this.kts_id = value;
+  }
+  get kstId() {
+    return this.kts_id;
+  }
 }
 
 module.exports = userAssertionModel;

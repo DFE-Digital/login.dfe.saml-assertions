@@ -1,31 +1,24 @@
 
-const issuerAssertions = [
+const issuerAssertions =
   {
-    id: 'EDUBASE1',
+    id: 'KTSLA',
     assertions: [
       {
         Type: 'http://www.edubase.gov.uk/SAUserId',
-        Value: '__user_id__',
+        Value: '__kts_id__',
       }, {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__oid__',
+        Value: '__kts_id__',
+      }, {
+        Type: 'LogonName',
+        Value: '__kts_id__',
       },
     ],
-  },
-  {
-    id: 'DQT1',
-    assertions: [
-      {
-        Type: 'http://www.edubase.gov.uk/SAUserId',
-        Value: '__user_id__',
-      },
-    ],
-  },
-];
+  };
 
 
 const getById = async (id) => {
-  const issuerAssertion = issuerAssertions.find(item => item.id.toLowerCase() === id.toLowerCase());
+  const issuerAssertion = issuerAssertions;
   return Promise.resolve(issuerAssertion || null);
 };
 
