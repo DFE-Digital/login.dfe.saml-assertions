@@ -28,7 +28,7 @@
     "express-ejs-layouts": "^2.3.1",
     "ioredis": "^3.2.2",
     "lodash": "^4.17.4",
-    "login.dfe.api.auth": "github:DFE-Digital/login.dfe.api.auth",
+    "login.dfe.api.auth": "github:DFE-Digital/login.dfe.api.auth#v1.0.0",
     "login.dfe.config.schema": "github:DFE-Digital/login.dfe.config.schema#v3.6",
     "login.dfe.healthcheck": "git+https://github.com/DFE-Digital/login.dfe.healthcheck.git#v1.3",
     "login.dfe.jwt-strategies": "https://github.com/DFE-Digital/login.dfe.jwt-strategies.git#v2.0.1",
