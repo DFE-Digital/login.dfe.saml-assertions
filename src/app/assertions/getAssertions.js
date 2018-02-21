@@ -2,12 +2,13 @@
 
 const logger = require('./../../infrastructure/logger');
 const accountApi = require('./../../infrastructure/account');
+const organisationApi = require('./../../infrastructure/organisation');
 const UserAccountAssertionModel = require('./userAssertionModel');
 const issuerAssertions = require('./../../infrastructure/issuer');
 
 const get = async (req, res) => {
   try {
-    if (!req.params.userId || !req.params.issuer) {
+    if (!req.params.userId || !req.params.serviceId) {
       res.status(400).send();
       return;
     }
@@ -19,12 +20,31 @@ const get = async (req, res) => {
       return;
     }
 
+    const services = await organisationApi.getServicesByUserId(req.params.userId, req.header('x-correlation-id'));
+
+    if (!services) {
+      res.status(404).send();
+      return;
+    }
+
+    const service = services.find(serviceFilter => serviceFilter.id === req.params.serviceId);
+
+    if (!service) {
+      res.status(404).send();
+      return;
+    }
+
     const userAccountAssertionModel = new UserAccountAssertionModel();
-    userAccountAssertionModel.Issuer = req.params.issuer;
     userAccountAssertionModel.UserId = user.sub;
     userAccountAssertionModel.UserEmail = user.email;
 
-    const issuerAssertion = await issuerAssertions.getById(req.params.issuer);
+    const ktsId = service.externalIdentifiers.find(filter => filter.key.toLowerCase() === 'kts-id');
+    if(ktsId) {
+      userAccountAssertionModel.ktsId = ktsId.value;
+    }
+
+
+    const issuerAssertion = await issuerAssertions.getById('');
 
     if (!issuerAssertion) {
       res.status(404).send();
