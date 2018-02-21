@@ -8,8 +8,12 @@ jest.mock('./../../src/infrastructure/config', () => ({
   assertions: {
     type: 'static',
   },
+  organisations: {
+    type: 'static',
+  },
 }));
 jest.mock('./../../src/infrastructure/account');
+jest.mock('./../../src/infrastructure/organisation');
 jest.mock('./../../src/infrastructure/issuer');
 const httpMocks = require('node-mocks-http');
 const accountAssertionModel = require('./../../src/app/assertions/userAssertionModel');
@@ -20,11 +24,14 @@ describe('When getting issuer assertions', () => {
   let logger;
   let get;
   let getUserByIdStub;
+  let getOrganisationServicesByUserId;
   let getIssuerAssertions;
   let account;
+  let organisationService;
   let issuerAssertions;
+  const expectedKtsId = '654322';
   const expectedUserId = '123EDCF';
-  const expectedIssuer = 'issuer1';
+  const expectedServiceId = '3BFDE961-F061-4786-B618-618DEAF96E44';
   const expectedUserEmail = 'test@user.com';
   const expectedRequestCorrelationId = '41ab33e5-4c27-12e9-3451-abb349b12f35';
   const user = { sub: expectedUserId, email: expectedUserEmail };
@@ -35,17 +42,43 @@ describe('When getting issuer assertions', () => {
         Value: '__user_id__',
       },
       {
+        Type: 'http://www.test.me.uk/ktsId',
+        Value: '__kts_id__',
+      },
+      {
         Type: 'http://www.test.me.uk/SomeParam',
         Value: '__user_param__',
       },
     ] };
+  const orgUser = [{
+    id: '3BFDE961-F061-4786-B618-618DEAF96E44',
+    name: 'Test Service (TS)',
+    description: 'A searchable test service.',
+    status: 1,
+    userId: '77D6B281-9F8D-4649-84B8-87FC42EEE71D',
+    requestDate: '2017-01-01T00:00:00.000Z',
+    approvers: [],
+    organisation: {
+      id: '88A1ED39-5A98-43DA-B66E-78E564EA72B0',
+      name: 'Test Org',
+    },
+    role: {
+      id: 0,
+      name: 'End user',
+    },
+    externalIdentifiers: [
+      { key: 'kts-id', value: expectedKtsId },
+      { key: 'Some_Id', value: '777777' },
+    ],
+  }];
+
 
   beforeEach(() => {
     res = httpMocks.createResponse();
     req = {
       params: {
         userId: expectedUserId,
-        issuer: expectedIssuer,
+        serviceId: expectedServiceId,
       },
       headers: {
         'x-correlation-id': expectedRequestCorrelationId,
@@ -61,6 +94,10 @@ describe('When getting issuer assertions', () => {
     getUserByIdStub = jest.fn().mockReturnValue(user);
     account = require('./../../src/infrastructure/account');
     account.getById = getUserByIdStub;
+
+    getOrganisationServicesByUserId = jest.fn().mockReturnValue(orgUser);
+    organisationService = require('./../../src/infrastructure/organisation');
+    organisationService.getServicesByUserId = getOrganisationServicesByUserId;
 
     getIssuerAssertions = jest.fn().mockReturnValue(issuerAssertion);
     issuerAssertions = require('./../../src/infrastructure/issuer');
@@ -79,7 +116,7 @@ describe('When getting issuer assertions', () => {
     expect(res.statusCode).toBe(400);
   });
   it('then a bad request is returned if the issuer is not passed', async () => {
-    req.params.issuer = '';
+    req.params.serviceId = '';
 
     await get(req, res);
 
@@ -88,6 +125,21 @@ describe('When getting issuer assertions', () => {
   it('then if the user is not found a 404 is returned', async () => {
     account.getById.mockReset();
     account.getById.mockReturnValue(null);
+
+    await get(req, res);
+
+    expect(res.statusCode).toBe(404);
+  });
+  it('then if the org service is not found a 404 is returned', async () => {
+    organisationService.getServicesByUserId.mockReset();
+    organisationService.getServicesByUserId.mockReturnValue(null);
+
+    await get(req, res);
+
+    expect(res.statusCode).toBe(404);
+  });
+  it('then if the org service is not in the list of available services a 404 is returned', async () => {
+    req.params.serviceId = '123456';
 
     await get(req, res);
 
@@ -102,7 +154,7 @@ describe('When getting issuer assertions', () => {
     expect(res.statusCode).toBe(200);
     expect(res._getData().email).toBe(expectedUserEmail);
     expect(res._getData().user_id).toBe(expectedUserId);
-    expect(res._getData().id).toBe(expectedIssuer);
+    expect(res._getData().kts_id).toBe(expectedKtsId);
     expect(account.getById.mock.calls[0][0]).toBe(expectedUserId);
     expect(account.getById.mock.calls[0][1]).toBe(expectedRequestCorrelationId);
   });
@@ -114,7 +166,7 @@ describe('When getting issuer assertions', () => {
   it('then the assertionServices storage is called', async () => {
     await get(req, res);
 
-    expect(issuerAssertions.getById.mock.calls[0][0]).toBe(expectedIssuer);
+    expect(issuerAssertions.getById.mock.calls[0][0]).toBe('');
   });
   it('then if no assertions for the user are returned a 404 is returned', async () => {
     issuerAssertions.getById.mockReset();
@@ -129,10 +181,16 @@ describe('When getting issuer assertions', () => {
 
     expect(res._getData().Assertions[0].Value).toBe(expectedUserId);
   });
+
   it('then assertions with no map are not changed', async () => {
     await get(req, res);
 
-    expect(res._getData().Assertions[1].Value).toBe('__user_param__');
+    expect(res._getData().Assertions[1].Value).toBe(expectedKtsId);
+  });
+  it('then assertions with no map are not changed', async () => {
+    await get(req, res);
+
+    expect(res._getData().Assertions[2].Value).toBe('__user_param__');
   });
   it('then a 500 response is returned if there is an error', async () => {
     account.getById.mockReset();
