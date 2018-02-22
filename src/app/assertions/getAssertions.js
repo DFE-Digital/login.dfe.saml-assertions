@@ -38,7 +38,7 @@ const get = async (req, res) => {
     userAccountAssertionModel.UserId = user.sub;
     userAccountAssertionModel.UserEmail = user.email;
 
-    const ktsId = service.externalIdentifiers.find(filter => filter.key.toLowerCase() === 'kts-id');
+    const ktsId = service.externalIdentifiers.find(filter => filter.key.toLowerCase() === 'k2s-id');
     if(ktsId) {
       userAccountAssertionModel.ktsId = ktsId.value;
     }
