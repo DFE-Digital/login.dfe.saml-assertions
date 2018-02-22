@@ -67,7 +67,7 @@ describe('When getting issuer assertions', () => {
       name: 'End user',
     },
     externalIdentifiers: [
-      { key: 'kts-id', value: expectedKtsId },
+      { key: 'k2s-id', value: expectedKtsId },
       { key: 'Some_Id', value: '777777' },
     ],
   }];
