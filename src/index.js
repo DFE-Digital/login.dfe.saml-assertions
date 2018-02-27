@@ -1,5 +1,4 @@
 const logger = require('./infrastructure/logger');
-const appInsights = require('applicationinsights');
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
@@ -13,10 +12,6 @@ const { samlAssertionsApi, validateConfigAndQuitOnError } = require('login.dfe.c
 const healthCheck = require('login.dfe.healthcheck');
 
 validateConfigAndQuitOnError(samlAssertionsApi, config, logger);
-
-if (config.hostingEnvironment.applicationInsights) {
-  appInsights.setup(config.hostingEnvironment.applicationInsights).start();
-}
 
 const app = express();
 
