@@ -1,6 +1,8 @@
 'use strict';
 
-jest.mock('./../../src/infrastructure/logger');
+jest.mock('./../../src/infrastructure/logger', () => {
+  return {};
+});
 jest.mock('./../../src/infrastructure/config', () => ({
   directories: {
     type: 'static',
