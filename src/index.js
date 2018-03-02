@@ -10,6 +10,7 @@ const config = require('./infrastructure/config');
 const userAssertions = require('./app/assertions');
 const { samlAssertionsApi, validateConfigAndQuitOnError } = require('login.dfe.config.schema');
 const healthCheck = require('login.dfe.healthcheck');
+const { getErrorHandler } = require('login.dfe.express-error-handling');
 
 validateConfigAndQuitOnError(samlAssertionsApi, config, logger);
 
@@ -25,6 +26,10 @@ app.set('layout', 'layouts/layout');
 
 app.use('/healthcheck', healthCheck({ config }));
 app.use('/users', userAssertions);
+
+app.use(getErrorHandler({
+  logger,
+}));
 
 if (config.hostingEnvironment.env === 'dev') {
   app.proxy = true;
