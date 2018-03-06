@@ -80,7 +80,7 @@ describe('When getting issuer assertions', () => {
     req = {
       params: {
         userId: expectedUserId,
-        serviceId: expectedServiceId,
+        serviceId: expectedServiceId.toLowerCase(),
       },
       headers: {
         'x-correlation-id': expectedRequestCorrelationId,
