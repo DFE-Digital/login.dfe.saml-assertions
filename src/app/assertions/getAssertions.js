@@ -27,7 +27,7 @@ const get = async (req, res) => {
       return;
     }
 
-    const service = services.find(serviceFilter => serviceFilter.id === req.params.serviceId);
+    const service = services.find(serviceFilter => serviceFilter.id.toLowerCase() === req.params.serviceId.toLowerCase());
 
     if (!service) {
       res.status(404).send();
