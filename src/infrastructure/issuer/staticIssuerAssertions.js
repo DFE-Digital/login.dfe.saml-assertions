@@ -1,4 +1,3 @@
-
 const issuerAssertions =
   {
     id: 'KTSLA',
@@ -18,7 +17,10 @@ const issuerAssertions =
 
 
 const getById = async (id) => {
-  const issuerAssertion = issuerAssertions;
+  const issuerAssertion = {
+    id: issuerAssertions.id,
+    assertions: issuerAssertions.assertions.map((a) => Object.assign({}, a)),
+  };
   return Promise.resolve(issuerAssertion || null);
 };
 
