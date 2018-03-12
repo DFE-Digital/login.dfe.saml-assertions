@@ -3,9 +3,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const morgan = require('morgan');
+const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const KeepAliveAgent = require('agentkeepalive');
 const config = require('./infrastructure/config');
 const userAssertions = require('./app/assertions');
 const { samlAssertionsApi, validateConfigAndQuitOnError } = require('login.dfe.config.schema');
@@ -13,6 +15,19 @@ const healthCheck = require('login.dfe.healthcheck');
 const { getErrorHandler } = require('login.dfe.express-error-handling');
 
 validateConfigAndQuitOnError(samlAssertionsApi, config, logger);
+
+http.GlobalAgent = new KeepAliveAgent({
+  maxSockets: 10,
+  maxFreeSockets: 2,
+  timeout: 60000,
+  keepAliveTimeout: 300000,
+});
+https.GlobalAgent = new KeepAliveAgent({
+  maxSockets: 10,
+  maxFreeSockets: 2,
+  timeout: 60000,
+  keepAliveTimeout: 300000,
+});
 
 const app = express();
 
