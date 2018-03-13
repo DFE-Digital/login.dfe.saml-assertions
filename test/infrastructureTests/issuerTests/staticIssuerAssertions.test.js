@@ -7,7 +7,7 @@ describe('when using static assertion storage', () => {
     expect(actual).not.toBeNull();
     expect(actual.id).toBe('KTSLA');
     expect(actual.assertions).toBeInstanceOf(Array);
-    expect(actual.assertions).toHaveLength(3);
+    expect(actual.assertions).toHaveLength(4);
     expect(actual.assertions[0]).toMatchObject({
       Type: 'http://www.edubase.gov.uk/SAUserId',
       Value: '__kts_id__',
@@ -19,6 +19,10 @@ describe('when using static assertion storage', () => {
     expect(actual.assertions[2]).toMatchObject({
       Type: 'LogonName',
       Value: '__kts_id__',
+    });
+    expect(actual.assertions[3]).toMatchObject({
+      Type: 'EmailAddress',
+      Value: '__email__',
     });
   });
 

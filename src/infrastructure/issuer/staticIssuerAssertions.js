@@ -11,6 +11,9 @@ const issuerAssertions =
       }, {
         Type: 'LogonName',
         Value: '__kts_id__',
+      }, {
+        Type: 'EmailAddress',
+        Value: '__email__',
       },
     ],
   };
