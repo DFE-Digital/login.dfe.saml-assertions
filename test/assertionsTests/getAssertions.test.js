@@ -3,7 +3,13 @@
 jest.mock('./../../src/infrastructure/logger', () => {
   return {};
 });
+jest.mock('agentkeepalive', () => ({
+  HttpsAgent: jest.fn(),
+}));
 jest.mock('./../../src/infrastructure/config', () => ({
+  hostingEnvironment: {
+    agentKeepAlive: {},
+  },
   directories: {
     type: 'static',
   },
