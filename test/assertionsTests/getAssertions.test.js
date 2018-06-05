@@ -174,7 +174,7 @@ describe('When getting issuer assertions', () => {
   it('then the assertionServices storage is called', async () => {
     await get(req, res);
 
-    expect(issuerAssertions.getById.mock.calls[0][0]).toBe('');
+    expect(issuerAssertions.getById.mock.calls[0][0]).toBe(expectedServiceId);
   });
   it('then if no assertions for the user are returned a 404 is returned', async () => {
     issuerAssertions.getById.mockReset();
@@ -195,11 +195,7 @@ describe('When getting issuer assertions', () => {
 
     expect(res._getData().Assertions[1].Value).toBe(expectedKtsId);
   });
-  it('then assertions with no map are not changed', async () => {
-    await get(req, res);
 
-    expect(res._getData().Assertions[2].Value).toBe('__user_param__');
-  });
   it('then a 500 response is returned if there is an error', async () => {
     account.getById.mockReset();
     account.getById = () => {
