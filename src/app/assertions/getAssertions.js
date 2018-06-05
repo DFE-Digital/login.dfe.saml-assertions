@@ -43,25 +43,25 @@ const get = async (req, res) => {
       userAccountAssertionModel.ktsId = ktsId.value;
     }
 
-
-    const issuerAssertion = await issuerAssertions.getById('');
+    const issuerAssertion = await issuerAssertions.getById(service.id);
 
     if (!issuerAssertion) {
       res.status(404).send();
       return;
     }
 
-    userAccountAssertionModel.UserAssertions = issuerAssertion.assertions.map((issuerA) => {
-      const issuerMapped = issuerA;
+    userAccountAssertionModel.UserAssertions = [];
 
-      Object.keys(userAccountAssertionModel).forEach((assertion) => {
-        if (`__${assertion.toLowerCase()}__` === issuerMapped.Value.toLowerCase()) {
-          issuerMapped.Value = Object.values(userAccountAssertionModel)[Object.keys(userAccountAssertionModel).indexOf(assertion)];
-        }
-      });
-
-      return issuerMapped;
+    issuerAssertion.assertions.forEach((assertion) => {
+      const value = service.externalIdentifiers.find(filter => `__${filter.key.toLowerCase()}__` === assertion.Value.toLowerCase());
+      if (value) {
+        userAccountAssertionModel.UserAssertions.push({Type: assertion.Type, Value: value.value});
+      } else if (Object.keys(userAccountAssertionModel).find((k) => `__${k.toLowerCase()}__` === assertion.Value.toLowerCase() )){
+        const key = Object.keys(userAccountAssertionModel).find((k) => `__${k.toLowerCase()}__` === assertion.Value.toLowerCase()) ;
+        userAccountAssertionModel.UserAssertions.push({Type: assertion.Type, Value: userAccountAssertionModel[key]});
+      }
     });
+
 
     res.send(userAccountAssertionModel);
   } catch (e) {
