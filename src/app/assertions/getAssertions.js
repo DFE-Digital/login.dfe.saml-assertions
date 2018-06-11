@@ -53,12 +53,14 @@ const get = async (req, res) => {
     userAccountAssertionModel.UserAssertions = [];
 
     issuerAssertion.assertions.forEach((assertion) => {
+      const FriendlyName = assertion.FriendlyName;
+
       const value = service.externalIdentifiers.find(filter => `__${filter.key.toLowerCase()}__` === assertion.Value.toLowerCase());
       if (value) {
-        userAccountAssertionModel.UserAssertions.push({Type: assertion.Type, Value: value.value});
+        userAccountAssertionModel.UserAssertions.push({Type: assertion.Type, Value: value.value, FriendlyName});
       } else if (Object.keys(userAccountAssertionModel).find((k) => `__${k.toLowerCase()}__` === assertion.Value.toLowerCase() )){
         const key = Object.keys(userAccountAssertionModel).find((k) => `__${k.toLowerCase()}__` === assertion.Value.toLowerCase()) ;
-        userAccountAssertionModel.UserAssertions.push({Type: assertion.Type, Value: userAccountAssertionModel[key]});
+        userAccountAssertionModel.UserAssertions.push({Type: assertion.Type, Value: userAccountAssertionModel[key], FriendlyName});
       }
     });
 
