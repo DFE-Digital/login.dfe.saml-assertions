@@ -47,11 +47,11 @@ describe('When getting issuer assertions', () => {
     assertions: [
       {
         Type: 'http://www.test.me.uk/SAUserId',
-        Value: '__user_id__',
+        Value: '__user.id__',
       },
       {
         Type: 'http://www.test.me.uk/ktsId',
-        Value: '__kts_id__',
+        Value: '__k2s-id__',
       },
       {
         Type: 'http://www.test.me.uk/SomeParam',
@@ -165,11 +165,6 @@ describe('When getting issuer assertions', () => {
     expect(res._getData().kts_id).toBe(expectedKtsId);
     expect(account.getById.mock.calls[0][0]).toBe(expectedUserId);
     expect(account.getById.mock.calls[0][1]).toBe(expectedRequestCorrelationId);
-  });
-  it('then an accountAssertionModel is returned', async () => {
-    await get(req, res);
-
-    expect(res._getData()).toBeInstanceOf(accountAssertionModel);
   });
   it('then the assertionServices storage is called', async () => {
     await get(req, res);

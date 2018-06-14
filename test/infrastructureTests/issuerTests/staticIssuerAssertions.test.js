@@ -22,7 +22,7 @@ describe('when using static assertion storage', () => {
     });
     expect(actual.assertions[3]).toMatchObject({
       Type: 'EmailAddress',
-      Value: '__email__',
+      Value: '__user.email__',
     });
   });
 

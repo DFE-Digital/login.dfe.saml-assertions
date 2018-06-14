@@ -13,7 +13,7 @@ const issuerAssertions = [
         Value: '__k2s-id__'
       }, {
         Type: 'EmailAddress',
-        Value: '__email__'
+        Value: '__user.email__'
       }
     ]
   },
@@ -88,8 +88,132 @@ const issuerAssertions = [
         FriendlyName: 'groups',
       }
     ]
-  }
-
+  },
+  {
+    id: 'df2ae7f3-917a-4489-8a62-8b9b536a71cc',
+    assertions: [
+      {
+        Type: 'urn:oid:2.5.4.10',
+        Value: '__organisation.name__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/localAuthority',
+        Value: '__localAuthority.code__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/orgStatusName',
+        Value: '__organisation.status.name__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/dfeNumber',
+        Value: '__organisation.dfeNumber__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/organisationId',
+        Value: '__organisationId__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/ascLowestAge',
+        Value: '__organisation.lowAge__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/number',
+        Value: '__organisation.establishmentNumber__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/regionName',
+        Value: '__organisation.region.name__'
+      },
+      {
+        Type: 'urn:oid:2.5.4.42',
+        Value: '__user.firstName__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/uKPRN',
+        Value: '__organisation.ukprn__'
+      },
+      {
+        Type: 'urn:oid:0.9.2342.19200300.100.1.1',
+        Value: '__saUserName__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/orgStatusCode',
+        Value: '__organisation.status.id__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/statutoryHighestAge',
+        Value: '__organisation.highAge__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/user/userStatusName',
+        Value: '__user.status.name__'
+      },
+      {
+        Type: 'urn:oid:2.5.4.45',
+        Value: '__saUserId__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/localAuthorityName',
+        Value: '__localAuthority.name__'
+      },
+      {
+        Type: 'urn:oid:2.5.4.20',
+        Value: '__organisation.telephone__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/user/groups',
+        Value: '__groups__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/ascHighestAge',
+        Value: '__organisation.highAge__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/ageRange',
+        Value: '__organisation.lowAge__ - __organisation.highAge__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/typeCode',
+        Value: '__organisation.type.id__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/uRN',
+        Value: '__organisation.urn__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/establishmentTypeName',
+        Value: '__organisation.type.name__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/regionCode',
+        Value: '__organisation.region.id__'
+      },
+      {
+        Type: 'urn:oid:1.2.840.113549.1.9.1',
+        Value: '__user.email__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/user/userStatusCode',
+        Value: '__user.status.id__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/establishmentTypeCode',
+        Value: '__organisation.type.id__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/typeName',
+        Value: '__organisation.category.name__'
+      },
+      {
+        Type: 'urn:oid:2.5.4.4',
+        Value: '__user.lastName__'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/statutoryLowestAge',
+        Value: '__organisation.lowAge__'
+      }
+    ]
+  },
 ];
 
 
