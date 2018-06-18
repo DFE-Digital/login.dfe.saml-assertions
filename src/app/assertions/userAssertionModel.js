@@ -166,11 +166,13 @@ class userAssertionModel {
         value = value.replace(`__${subPath}__`, subValue);
       });
 
-      this.assertions.push({
-        Type: assertion.Type,
-        Value: value,
-        FriendlyName: assertion.FriendlyName,
-      });
+      if (value ||  assertion.Required === true) {
+        this.assertions.push({
+          Type: assertion.Type,
+          Value: value,
+          FriendlyName: assertion.FriendlyName,
+        });
+      }
     });
 
     return this;
