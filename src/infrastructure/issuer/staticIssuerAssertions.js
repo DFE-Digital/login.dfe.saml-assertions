@@ -133,6 +133,10 @@ const issuerAssertions = [
         Value: '__organisation.ukprn__'
       },
       {
+        Type: 'https://sa.education.gov.uk/idp/org/uID',
+        Value: '__organisation.uid__'
+      },
+      {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
         Value: '__saUserName__'
       },
@@ -174,7 +178,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/typeCode',
-        Value: '__organisation.type.id__'
+        Value: '__organisation.category.id__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/establishment/uRN',
@@ -182,7 +186,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/establishment/establishmentTypeName',
-        Value: '__organisation.type.name__'
+        Value: '__organisation.category.name__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/regionCode',
