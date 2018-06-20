@@ -122,7 +122,7 @@ class userAssertionModel {
       this.localAuthority.id = organisation.localAuthority.id;
       this.localAuthority.name = organisation.localAuthority.name;
       this.localAuthority.code = organisation.localAuthority.code;
-    } else if (organisation.category.id === '002') {
+    } else if (organisation.category && organisation.category.id === '002') {
       this.localAuthority.id = organisation.id;
       this.localAuthority.name = organisation.name;
       this.localAuthority.code = organisation.establishmentNumber;
