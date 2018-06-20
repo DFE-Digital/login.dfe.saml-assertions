@@ -1,8 +1,8 @@
 const userStatusMap = [
-  { id: -2, name: 'Deactivated Invitation' },
-  { id: -1, name: 'Invited' },
-  { id: 0, name: 'Deactivated' },
-  { id: 1, name: 'Active' },
+  { id: -2, name: 'deactivated invitation' },
+  { id: -1, name: 'invited' },
+  { id: 0, name: 'deactivated' },
+  { id: 1, name: 'active' },
 ];
 
 const getAssertionValues = (model, parentPath) => {

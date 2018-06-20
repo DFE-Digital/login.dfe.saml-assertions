@@ -198,7 +198,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/user/userStatusCode',
-        Value: '__user.status.id__'
+        Value: '__user.status.name__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/establishment/establishmentTypeCode',
