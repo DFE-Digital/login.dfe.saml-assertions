@@ -1,8 +1,8 @@
 const userStatusMap = [
-  { id: -2, name: 'deactivated invitation' },
-  { id: -1, name: 'invited' },
-  { id: 0, name: 'deactivated' },
-  { id: 1, name: 'active' },
+  { id: -2, code: 'deactivated-invitation', name: 'Deactivated Invitation' },
+  { id: -1, code: 'invited', name: 'Invited' },
+  { id: 0, code: 'deactivated', name: 'Deactivated' },
+  { id: 1, code: 'active', name: 'Active' },
 ];
 
 const getAssertionValues = (model, parentPath) => {
@@ -47,6 +47,7 @@ class userAssertionModel {
       name: undefined,
       status: {
         id: undefined,
+        code: undefined,
         name: undefined,
       },
       establishmentNumber: undefined,
@@ -87,6 +88,7 @@ class userAssertionModel {
     this.user.firstName = account.given_name;
     this.user.lastName = account.family_name;
     this.user.status.id = account.status;
+    this.user.status.code = status ? status.code : '';
     this.user.status.name = status ? status.name : '';
 
     return this;
