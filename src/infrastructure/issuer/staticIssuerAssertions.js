@@ -528,7 +528,17 @@ const issuerAssertions = [
         Type: 'https://sa.education.gov.uk/idp/user/userStatusCode',
         Value: '__user.status.code__',
         FriendlyName: 'userStatusCode'
-      }
+      },
+      {
+        Type: 'urn:oid:0.9.2342.19200300.100.1.1',
+        Value: '__saUserName__',
+        FriendlyName: 'userName'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/typeCode',
+        Value: '__organisation.category.id__',
+        FriendlyName: 'typeCode'
+      },
     ]
   },
   {
