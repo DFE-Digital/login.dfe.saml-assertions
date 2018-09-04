@@ -19,9 +19,13 @@ jest.mock('./../../src/infrastructure/config', () => ({
   organisations: {
     type: 'static',
   },
+  access: {
+    type: 'static',
+  },
 }));
 jest.mock('./../../src/infrastructure/account');
 jest.mock('./../../src/infrastructure/organisation');
+jest.mock('./../../src/infrastructure/access');
 jest.mock('./../../src/infrastructure/issuer');
 const httpMocks = require('node-mocks-http');
 const accountAssertionModel = require('./../../src/app/assertions/userAssertionModel');
@@ -33,6 +37,8 @@ describe('When getting issuer assertions', () => {
   let get;
   let getUserByIdStub;
   let getOrganisationServicesByUserId;
+  let getOrganisations;
+  let getOrganisationsById;
   let getIssuerAssertions;
   let account;
   let organisationService;
@@ -62,43 +68,42 @@ describe('When getting issuer assertions', () => {
         Value: '__organisation.id__',
       },
     ] };
+  const org1 = {
+      id: '9ceb2799-e34c-4398-9301-46d7c73af9d6',
+      name: 'Test Org',
+  };
+
   const orgUser = [{
-    id: '3BFDE961-F061-4786-B618-618DEAF96E44',
+    serviceId: '3BFDE961-F061-4786-B618-618DEAF96E44',
     name: 'Test Service (TS)',
     description: 'A searchable test service.',
     status: 1,
     userId: '77D6B281-9F8D-4649-84B8-87FC42EEE71D',
     requestDate: '2017-01-01T00:00:00.000Z',
     approvers: [],
-    organisation: {
-      id: '88A1ED39-5A98-43DA-B66E-78E564EA72B0',
-      name: 'Test Org',
-    },
+    organisationId: '88A1ED39-5A98-43DA-B66E-78E564EA72B0',
     role: {
       id: 0,
       name: 'End user',
     },
-    externalIdentifiers: [
+    identifiers: [
       { key: 'k2s-id', value: expectedKtsId },
       { key: 'Some_Id', value: '777777' },
     ],
   },{
-    id: '3BFDE961-F061-4786-B618-618DEAF96E44',
+    serviceId: '3BFDE961-F061-4786-B618-618DEAF96E44',
     name: 'Test Service 2 (TS)',
     description: 'Second searchable test service.',
     status: 1,
     userId: '77D6B281-9F8D-4649-84B8-87FC42EEE71D',
     requestDate: '2017-01-01T00:00:00.000Z',
     approvers: [],
-    organisation: {
-      id: '9ceb2799-e34c-4398-9301-46d7c73af9d6',
-      name: 'Test Org',
-    },
+    organisationId: '9ceb2799-e34c-4398-9301-46d7c73af9d6',
     role: {
       id: 0,
       name: 'End user',
     },
-    externalIdentifiers: [
+    identifiers: [
       { key: 'k2s-id', value: expectedKtsId },
       { key: 'Some_Id', value: '88888888' },
     ],
@@ -128,8 +133,12 @@ describe('When getting issuer assertions', () => {
     account.getById = getUserByIdStub;
 
     getOrganisationServicesByUserId = jest.fn().mockReturnValue(orgUser);
-    organisationService = require('./../../src/infrastructure/organisation');
+    organisationService = require('./../../src/infrastructure/access');
     organisationService.getServicesByUserId = getOrganisationServicesByUserId;
+    getOrganisations = require('./../../src/infrastructure/organisation');
+    getOrganisationsById = jest.fn().mockReturnValue(org1);
+    getOrganisations.getOrganisationById = getOrganisationsById;
+
 
     getIssuerAssertions = jest.fn().mockReturnValue(issuerAssertion);
     issuerAssertions = require('./../../src/infrastructure/issuer');
@@ -164,6 +173,7 @@ describe('When getting issuer assertions', () => {
     expect(res.statusCode).toBe(404);
   });
   it('then if the org service is not found a 404 is returned', async () => {
+    account.getById.mockReset();
     organisationService.getServicesByUserId.mockReset();
     organisationService.getServicesByUserId.mockReturnValue(null);
 

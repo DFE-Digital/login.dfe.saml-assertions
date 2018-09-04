@@ -95,9 +95,9 @@ class userAssertionModel {
   }
 
   setServicePropertiesFromService(service) {
-    this.user.externalIdentifiers = service.externalIdentifiers;
+    this.user.externalIdentifiers = service.identifiers;
 
-    const ktsId = service.externalIdentifiers.find(filter => filter.key.toLowerCase() === 'k2s-id');
+    const ktsId = service.identifiers.find(filter => filter.key.toLowerCase() === 'k2s-id');
     if (ktsId) {
       this.user.ktsId = ktsId.value;
     }
