@@ -30,7 +30,7 @@
     "ioredis": "^3.2.2",
     "lodash": "^4.17.10",
     "login.dfe.api.auth": "github:DFE-Digital/login.dfe.api.auth#v1.0.0",
-    "login.dfe.config.schema": "github:DFE-Digital/login.dfe.config.schema#v4.6",
+    "login.dfe.config.schema": "github:DFE-Digital/login.dfe.config.schema#v12.0",
     "login.dfe.express-error-handling": "git+https://github.com/DFE-Digital/login.dfe.express-error-handling.git#v1.2",
     "login.dfe.healthcheck": "git+https://github.com/DFE-Digital/login.dfe.healthcheck.git#v1.4.3",
     "login.dfe.jwt-strategies": "git+https://github.com/DFE-Digital/login.dfe.jwt-strategies.git#v2.0.1",

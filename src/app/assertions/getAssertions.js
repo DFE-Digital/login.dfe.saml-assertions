@@ -5,13 +5,13 @@ const accountApi = require('./../../infrastructure/account');
 const organisationApi = require('./../../infrastructure/organisation');
 const UserAccountAssertionModel = require('./userAssertionModel');
 const issuerAssertions = require('./../../infrastructure/issuer');
-
+const { getServicesByUserId } = require('./../../infrastructure/access');
 const doesServiceMeetRequestCriteria = (service, req) => {
-  if (service.id.toLowerCase() !== req.params.serviceId.toLowerCase()) {
+  if (service.serviceId.toLowerCase() !== req.params.serviceId.toLowerCase()) {
     return false;
   }
 
-  if (req.params.organisationId && service.organisation.id.toLowerCase() !== req.params.organisationId.toLowerCase()) {
+  if (req.params.organisationId && service.organisationId.toLowerCase() !== req.params.organisationId.toLowerCase()) {
     return false;
   }
 
@@ -29,7 +29,7 @@ const get = async (req, res) => {
       return res.status(404).send();
     }
 
-    const services = await organisationApi.getServicesByUserId(req.params.userId, req.header('x-correlation-id'));
+    const services = await getServicesByUserId(req.params.userId, req.header('x-correlation-id'));
     if (!services) {
       return res.status(404).send();
     }
@@ -40,7 +40,12 @@ const get = async (req, res) => {
       return res.status(404).send();
     }
 
-    const issuerAssertion = await issuerAssertions.getById(service.id);
+    const organisation = await organisationApi.getOrganisationById(service.organisationId, req.header('x-correlation-id'));
+    if (!organisation) {
+      return res.status(404).send();
+    }
+
+    const issuerAssertion = await issuerAssertions.getById(service.serviceId);
     if (!issuerAssertion) {
       return res.status(404).send();
     }
@@ -48,7 +53,7 @@ const get = async (req, res) => {
     const userAccountAssertionModel = new UserAccountAssertionModel()
       .setUserPropertiesFromAccount(user)
       .setServicePropertiesFromService(service)
-      .setOrganisationPropertiesFromOrganisation(service.organisation)
+      .setOrganisationPropertiesFromOrganisation(organisation)
       .buildAssertions(issuerAssertion.assertions);
 
     const result = userAccountAssertionModel.export();

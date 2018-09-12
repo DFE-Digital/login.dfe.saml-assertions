@@ -20,11 +20,12 @@ const orgServices = [
   },
 ];
 
-const getServicesByUserId = async (id) => {
-  const account = orgServices.find(item => item.userId.toLowerCase() === id.toLowerCase());
+
+const getOrganisationById= async (id) => {
+  const account = orgServices.find(item => item.organisation.id.toLowerCase() === id.toLowerCase());
   return Promise.resolve(account || null);
 };
 
 module.exports = {
-  getServicesByUserId,
+  getOrganisationById,
 };

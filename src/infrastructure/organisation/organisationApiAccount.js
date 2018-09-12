@@ -42,8 +42,9 @@ const callOrganisationApi = async (resource, body, method, reqId) => {
   }
 };
 
-const getServicesByUserId = async (id, reqId) => {
-  const response = await callOrganisationApi(`services/associated-with-user/${id}`, null, 'GET', reqId);
+
+const getOrganisationById = async (id, reqId) => {
+  const response = await callOrganisationApi(`organisations/${id}`, null, 'GET', reqId);
   if (!response.success) {
     if (response.statusCode === 404) {
       return null;
@@ -54,5 +55,5 @@ const getServicesByUserId = async (id, reqId) => {
 };
 
 module.exports = {
-  getServicesByUserId,
+  getOrganisationById,
 };
