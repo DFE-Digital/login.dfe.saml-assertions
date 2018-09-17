@@ -44,7 +44,7 @@ const callOrganisationApi = async (resource, body, method, reqId) => {
 
 
 const getOrganisationById = async (id, reqId) => {
-  const response = await callOrganisationApi(`organisations/${id}`, null, 'GET', reqId);
+  const response = await callOrganisationApi(`organisations/v2/${id}`, null, 'GET', reqId);
   if (!response.success) {
     if (response.statusCode === 404) {
       return null;
