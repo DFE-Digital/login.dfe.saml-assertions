@@ -431,6 +431,11 @@ const issuerAssertions = [
         FriendlyName: 'groups'
       },
       {
+        Type: 'https://sa.education.gov.uk/idp/org/uKPRN',
+        Value: '__organisation.ukprn__',
+        FriendlyName: 'uKPRN'
+      },
+      {
         Type: 'https://sa.education.gov.uk/idp/org/localAuthority',
         Value: '__localAuthority.code__',
         FriendlyName: 'localAuthority'
