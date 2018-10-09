@@ -59,6 +59,7 @@ class userAssertionModel {
       urn: undefined,
       uid: undefined,
       ukprn: undefined,
+      companyRegistrationNumber: undefined,
       telephone: undefined,
       category: {
         id: undefined,
@@ -147,6 +148,8 @@ class userAssertionModel {
       this.organisation.type.id = organisation.type.id;
       this.organisation.type.name = organisation.type.name;
     }
+
+    this.organisation.companyRegistrationNumber = organisation.companyRegistrationNumber;
 
     return this;
   }

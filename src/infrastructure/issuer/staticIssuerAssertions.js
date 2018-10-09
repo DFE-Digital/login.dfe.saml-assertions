@@ -436,6 +436,11 @@ const issuerAssertions = [
         FriendlyName: 'uKPRN'
       },
       {
+        Type: 'https://sa.education.gov.uk/idp/org/companyRegistrationNumber',
+        Value: '__organisation.companyRegistrationNumber__',
+        FriendlyName: 'companyRegistrationNumber'
+      },
+      {
         Type: 'https://sa.education.gov.uk/idp/org/localAuthority',
         Value: '__localAuthority.code__',
         FriendlyName: 'localAuthority'
