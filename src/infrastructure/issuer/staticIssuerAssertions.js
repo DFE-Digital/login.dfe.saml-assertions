@@ -222,7 +222,7 @@ const issuerAssertions = [
     id: '2354cb2e-f559-4bf4-9981-4f6c6890aa5e',
     assertions: [
       {
-        Type: 'urn:oid:2.5.4.10',
+        Type: 'https://sa.education.gov.uk/idp/user/groups',
         Value: '__groups__',
         FriendlyName: 'groups'
       },
