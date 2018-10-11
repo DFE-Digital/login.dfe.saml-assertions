@@ -223,7 +223,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.10',
-        Value: '__organisation.name__',
+        Value: '__groups__',
         FriendlyName: 'groups'
       },
       {
@@ -280,17 +280,7 @@ const issuerAssertions = [
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
         Value: '__saUserName__',
         FriendlyName: 'userName'
-      },
-      {
-        Type: 'https://sa.education.gov.uk/idp/org/typeCode',
-        Value: '__organisation.category.id__',
-        FriendlyName: 'typeCode'
-      },
-      {
-        Type: 'https://sa.education.gov.uk/idp/org/uID',
-        Value: '__organisation.uid__',
-        FriendlyName: 'uID'
-      },
+      }
     ]
   },
   {
