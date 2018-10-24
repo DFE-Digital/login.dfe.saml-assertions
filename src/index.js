@@ -10,11 +10,11 @@ const path = require('path');
 const KeepAliveAgent = require('agentkeepalive');
 const config = require('./infrastructure/config');
 const userAssertions = require('./app/assertions');
-const { samlAssertionsApi, validateConfigAndQuitOnError } = require('login.dfe.config.schema');
+const configSchema = require('./infrastructure/config/schema');
 const healthCheck = require('login.dfe.healthcheck');
 const { getErrorHandler } = require('login.dfe.express-error-handling');
 
-validateConfigAndQuitOnError(samlAssertionsApi, config, logger);
+configSchema.validate();
 
 http.GlobalAgent = new KeepAliveAgent({
   maxSockets: config.hostingEnvironment.agentKeepAlive.maxSockets,
