@@ -638,18 +638,13 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/establishment/establishmentTypeName',
-        Value: '__organisation.category.name__',
+        Value: '__organisation.type.name__',
         FriendlyName: 'establishmentTypeName'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/regionCode',
         Value: '__organisation.region.id__',
         FriendlyName: 'regionCode'
-      },
-      {
-        Type: 'urn:oid:1.2.840.113549.1.9.1',
-        Value: '__user.email__',
-        FriendlyName: 'email'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/user/userStatusCode',
