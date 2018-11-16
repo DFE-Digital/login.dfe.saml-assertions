@@ -19,17 +19,27 @@ const doesServiceMeetRequestCriteria = (service, req) => {
 };
 
 const get = async (req, res) => {
+  const correlationId = req.header('x-correlation-id');
   try {
     if (!req.params.userId || !req.params.serviceId) {
       return res.status(400).send();
     }
 
-    const user = await accountApi.getById(req.params.userId, req.header('x-correlation-id'));
+    const user = await accountApi.getById(req.params.userId, correlationId);
     if (!user) {
       return res.status(404).send();
     }
 
-    const services = await getServicesByUserId(req.params.userId, req.header('x-correlation-id'));
+    let userOrganisation;
+    if (req.params.organisationId) {
+      const userOrganisations = await organisationApi.getOrganisationsForUser(req.params.userId, correlationId) || [];
+      userOrganisation = userOrganisations.find(x => x.organisation.id.toLowerCase() === req.params.organisationId.toLowerCase());
+      if (!userOrganisation) {
+        return res.status(404).send();
+      }
+    }
+
+    const services = await getServicesByUserId(req.params.userId, correlationId);
     if (!services) {
       return res.status(404).send();
     }
@@ -40,7 +50,7 @@ const get = async (req, res) => {
       return res.status(404).send();
     }
 
-    const organisation = await organisationApi.getOrganisationById(service.organisationId, req.header('x-correlation-id'));
+    const organisation = await organisationApi.getOrganisationById(service.organisationId, correlationId);
     if (!organisation) {
       return res.status(404).send();
     }
@@ -52,6 +62,7 @@ const get = async (req, res) => {
 
     const userAccountAssertionModel = new UserAccountAssertionModel()
       .setUserPropertiesFromAccount(user)
+      .setUserPropertiesFromUserOrganisation(userOrganisation)
       .setServicePropertiesFromService(service)
       .setOrganisationPropertiesFromOrganisation(organisation)
       .buildAssertions(issuerAssertion.assertions);

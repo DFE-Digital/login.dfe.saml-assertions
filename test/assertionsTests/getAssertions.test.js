@@ -39,6 +39,7 @@ describe('When getting issuer assertions', () => {
   let getOrganisationServicesByUserId;
   let getOrganisations;
   let getOrganisationsById;
+  let getOrganisationsForUser;
   let getIssuerAssertions;
   let account;
   let organisationService;
@@ -49,7 +50,8 @@ describe('When getting issuer assertions', () => {
   const expectedUserEmail = 'test@user.com';
   const expectedRequestCorrelationId = '41ab33e5-4c27-12e9-3451-abb349b12f35';
   const user = { sub: expectedUserId, email: expectedUserEmail };
-  const issuerAssertion = { id: 'DQT1',
+  const issuerAssertion = {
+    id: 'DQT1',
     assertions: [
       {
         Type: 'http://www.test.me.uk/SAUserId',
@@ -67,10 +69,11 @@ describe('When getting issuer assertions', () => {
         Type: 'http://www.test.me.uk/OrgId',
         Value: '__organisation.id__',
       },
-    ] };
+    ]
+  };
   const org1 = {
-      id: '9ceb2799-e34c-4398-9301-46d7c73af9d6',
-      name: 'Test Org',
+    id: '9ceb2799-e34c-4398-9301-46d7c73af9d6',
+    name: 'Test Org',
   };
 
   const orgUser = [{
@@ -90,7 +93,7 @@ describe('When getting issuer assertions', () => {
       { key: 'k2s-id', value: expectedKtsId },
       { key: 'Some_Id', value: '777777' },
     ],
-  },{
+  }, {
     serviceId: '3BFDE961-F061-4786-B618-618DEAF96E44',
     name: 'Test Service 2 (TS)',
     description: 'Second searchable test service.',
@@ -138,6 +141,8 @@ describe('When getting issuer assertions', () => {
     getOrganisations = require('./../../src/infrastructure/organisation');
     getOrganisationsById = jest.fn().mockReturnValue(org1);
     getOrganisations.getOrganisationById = getOrganisationsById;
+    getOrganisationsForUser = jest.fn().mockReturnValue([{ organisation: org1 }]);
+    getOrganisations.getOrganisationsForUser = getOrganisationsForUser;
 
 
     getIssuerAssertions = jest.fn().mockReturnValue(issuerAssertion);
@@ -248,7 +253,7 @@ describe('When getting issuer assertions', () => {
     expect(res._getData().email).toBe(expectedUserEmail);
     expect(res._getData().user_id).toBe(expectedUserId);
 
-    const orgAssertion = res._getData().Assertions.find(x=>x.Type === 'http://www.test.me.uk/OrgId');
+    const orgAssertion = res._getData().Assertions.find(x => x.Type === 'http://www.test.me.uk/OrgId');
     expect(orgAssertion).toBeDefined();
     expect(orgAssertion.Value).toBe('9ceb2799-e34c-4398-9301-46d7c73af9d6');
   });

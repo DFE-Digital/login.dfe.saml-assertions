@@ -25,7 +25,11 @@ const getOrganisationById= async (id) => {
   const account = orgServices.find(item => item.organisation.id.toLowerCase() === id.toLowerCase());
   return Promise.resolve(account || null);
 };
+const getOrganisationsForUser = async (userId, reqId) => {
+  return Promise.resolve([]);
+};
 
 module.exports = {
   getOrganisationById,
+  getOrganisationsForUser,
 };
