@@ -41,6 +41,8 @@ class userAssertionModel {
       },
       ktsId: undefined,
       externalIdentifiers: [],
+      numericIdentifier: undefined,
+      textIdentifier: undefined,
     };
     this.organisation = {
       id: undefined,
@@ -91,6 +93,15 @@ class userAssertionModel {
     this.user.status.id = account.status;
     this.user.status.code = status ? status.code : '';
     this.user.status.name = status ? status.name : '';
+
+    return this;
+  }
+
+  setUserPropertiesFromUserOrganisation(userOrganisation) {
+    if (userOrganisation) {
+      this.user.numericIdentifier = userOrganisation.numericIdentifier;
+      this.user.textIdentifier = userOrganisation.textIdentifier;
+    }
 
     return this;
   }
@@ -175,7 +186,7 @@ class userAssertionModel {
         value = value.replace(`__${subPath}__`, subValue);
       });
 
-      if (value ||  assertion.Required === true) {
+      if (value || assertion.Required === true) {
         this.assertions.push({
           Type: assertion.Type,
           Value: value,
