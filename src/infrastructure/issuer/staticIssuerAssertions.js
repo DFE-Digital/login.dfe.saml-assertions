@@ -30,7 +30,7 @@ const issuerAssertions = [
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups',
       }
     ]
@@ -48,7 +48,7 @@ const issuerAssertions = [
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups',
       }
     ]
@@ -66,7 +66,7 @@ const issuerAssertions = [
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups',
       }
     ]
@@ -84,7 +84,7 @@ const issuerAssertions = [
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups',
       }
     ]
@@ -166,7 +166,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__'
+        Value: '__user.roles.codes__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/establishment/ascHighestAge',
@@ -223,7 +223,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups'
       },
       {
@@ -378,7 +378,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups'
       },
       {
@@ -613,7 +613,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups'
       },
       {

@@ -15,8 +15,7 @@ const getAssertionValues = (model, parentPath) => {
     if (modelValue instanceof Object && !(modelValue instanceof Array)) {
       const subValues = getAssertionValues(modelValue, path);
       assertionValues.push(...subValues);
-    }
-    else if (!(modelValue instanceof Array)) {
+    } else if (!(modelValue instanceof Array)) {
       assertionValues.push({
         path,
         value: modelValue,
@@ -43,6 +42,9 @@ class userAssertionModel {
       externalIdentifiers: [],
       numericIdentifier: undefined,
       textIdentifier: undefined,
+      roles: {
+        codes: undefined,
+      }
     };
     this.organisation = {
       id: undefined,
@@ -112,6 +114,10 @@ class userAssertionModel {
     const ktsId = service.identifiers.find(filter => filter.key.toLowerCase() === 'k2s-id');
     if (ktsId) {
       this.user.ktsId = ktsId.value;
+    }
+
+    if (service.roles) {
+      this.user.roles.codes = service.roles.map(r => r.code).join(', ');
     }
 
     return this;
