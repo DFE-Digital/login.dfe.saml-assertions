@@ -22,7 +22,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
@@ -30,7 +30,7 @@ const issuerAssertions = [
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups',
       }
     ]
@@ -40,7 +40,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
@@ -48,7 +48,7 @@ const issuerAssertions = [
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups',
       }
     ]
@@ -58,7 +58,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
@@ -66,7 +66,7 @@ const issuerAssertions = [
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups',
       }
     ]
@@ -76,7 +76,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
@@ -84,7 +84,7 @@ const issuerAssertions = [
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups',
       }
     ]
@@ -138,7 +138,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__'
+        Value: '__user.textIdentifier__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/orgStatusCode',
@@ -154,7 +154,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__'
+        Value: '__user.numericIdentifier__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/localAuthorityName',
@@ -166,7 +166,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__'
+        Value: '__user.roles.codes__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/establishment/ascHighestAge',
@@ -223,7 +223,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups'
       },
       {
@@ -268,7 +268,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
@@ -278,7 +278,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       }
     ]
@@ -343,7 +343,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       },
       {
@@ -363,7 +363,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
@@ -378,7 +378,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups'
       },
       {
@@ -498,7 +498,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
@@ -508,7 +508,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       },
       {
@@ -578,7 +578,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       },
       {
@@ -598,7 +598,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
@@ -613,7 +613,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
-        Value: '__groups__',
+        Value: '__user.roles.codes__',
         FriendlyName: 'groups'
       },
       {
@@ -678,12 +678,12 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       }
     ]
@@ -693,12 +693,12 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       }
     ]
