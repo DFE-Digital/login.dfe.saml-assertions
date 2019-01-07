@@ -22,7 +22,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
@@ -40,7 +40,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
@@ -58,7 +58,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
@@ -76,7 +76,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
@@ -138,7 +138,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__'
+        Value: '__user.textIdentifier__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/orgStatusCode',
@@ -154,7 +154,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__'
+        Value: '__user.numericIdentifier__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/localAuthorityName',
@@ -268,7 +268,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
@@ -278,7 +278,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       }
     ]
@@ -343,7 +343,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       },
       {
@@ -363,7 +363,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
@@ -498,7 +498,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
@@ -508,7 +508,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       },
       {
@@ -578,7 +578,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       },
       {
@@ -598,7 +598,7 @@ const issuerAssertions = [
       },
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
@@ -678,12 +678,12 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       }
     ]
@@ -693,12 +693,12 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'urn:oid:2.5.4.45',
-        Value: '__saUserId__',
+        Value: '__user.numericIdentifier__',
         FriendlyName: 'userId'
       },
       {
         Type: 'urn:oid:0.9.2342.19200300.100.1.1',
-        Value: '__saUserName__',
+        Value: '__user.textIdentifier__',
         FriendlyName: 'userName'
       }
     ]
