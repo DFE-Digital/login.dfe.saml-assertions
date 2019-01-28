@@ -133,6 +133,7 @@ class userAssertionModel {
     this.organisation.telephone = organisation.telephone;
     this.organisation.lowAge = organisation.statutoryLowAge;
     this.organisation.highAge = organisation.statutoryHighAge;
+    this.organisation.legacyId = organisation.legacyId;
     this.organisation.dfeNumber = organisation.localAuthority && organisation.localAuthority.code && organisation.establishmentNumber
       ? `${organisation.localAuthority.code}${organisation.establishmentNumber}` : undefined;
 

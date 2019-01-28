@@ -26,7 +26,7 @@ const issuerAssertions = [
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
-        Value: '__organisationId__',
+        Value: '__organisation.legacyId__',
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
@@ -44,7 +44,7 @@ const issuerAssertions = [
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
-        Value: '__organisationId__',
+        Value: '__organisation.legacyId__',
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
@@ -62,7 +62,7 @@ const issuerAssertions = [
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
-        Value: '__organisationId__',
+        Value: '__organisation.legacyId__',
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
@@ -80,7 +80,7 @@ const issuerAssertions = [
         FriendlyName: 'userId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
-        Value: '__organisationId__',
+        Value: '__organisation.legacyId__',
         FriendlyName: 'organisationId',
       }, {
         Type: 'https://sa.education.gov.uk/idp/user/groups',
@@ -110,7 +110,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
-        Value: '__organisationId__'
+        Value: '__organisation.legacyId__'
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/establishment/ascLowestAge',
@@ -238,7 +238,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
-        Value: '__organisationId__',
+        Value: '__organisation.legacyId__',
         FriendlyName: 'organisationId'
       },
       {
@@ -308,7 +308,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
-        Value: '__organisationId__',
+        Value: '__organisation.legacyId__',
         FriendlyName: 'organisationId'
       },
       {
@@ -468,7 +468,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
-        Value: '__organisationId__',
+        Value: '__organisation.legacyId__',
         FriendlyName: 'organisationId'
       },
       {
@@ -543,7 +543,7 @@ const issuerAssertions = [
       },
       {
         Type: 'https://sa.education.gov.uk/idp/org/organisationId',
-        Value: '__organisationId__',
+        Value: '__organisation.legacyId__',
         FriendlyName: 'organisationId'
       },
       {
