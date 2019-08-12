@@ -703,6 +703,90 @@ const issuerAssertions = [
       }
     ]
   },
+  {
+    id: 'b45616a1-19a7-4a2e-966d-9e28c99bc6c6',
+    assertions: [
+      {
+        Type: 'urn:oid:2.5.4.42',
+        Value: '__user.firstName__',
+        FriendlyName: 'firstName'
+      },
+      {
+        Type: 'urn:oid:2.5.4.4',
+        Value: '__user.lastName__',
+        FriendlyName: 'lastName'
+      },
+      {
+        Type: 'urn:oid:1.2.840.113549.1.9.1',
+        Value: '__user.email__',
+        FriendlyName: 'email'
+      }, {
+        Type: 'https://sa.education.gov.uk/idp/user/groups',
+        Value: '__user.roles.codes__',
+        FriendlyName: 'groups',
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/uKPRN',
+        Value: '__organisation.ukprn__',
+        FriendlyName: 'uKPRN'
+      },
+      {
+        Type: 'urn:oid:2.5.4.45',
+        Value: '__user.numericIdentifier__',
+        FriendlyName: 'userId',
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/localAuthority',
+        Value: '__localAuthority.code__',
+        FriendlyName: 'localAuthority'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/localAuthorityName',
+        Value: '__localAuthority.name__',
+        FriendlyName: "localAuthorityName"
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/ascHighestAge',
+        Value: '__organisation.highAge__',
+        FriendlyName: 'ascHighestAge'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/ageRange',
+        Value: '__organisation.lowAge__ - __organisation.highAge__',
+        FriendlyName: 'ageRange'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/uRN',
+        Value: '__organisation.urn__',
+        FriendlyName: 'uRN'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/establishmentTypeName',
+        Value: '__organisation.type.name__',
+        FriendlyName: 'establishmentTypeName'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/regionCode',
+        Value: '__organisation.region.id__',
+        FriendlyName: 'regionCode'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/establishmentTypeCode',
+        Value: '__organisation.type.id__',
+        FriendlyName: 'establishmentTypeCode'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/statutoryLowestAge',
+        Value: '__organisation.lowAge__',
+        FriendlyName: 'statutoryLowestAge'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/companyRegistrationNumber',
+        Value: '__organisation.companyRegistrationNumber__',
+        FriendlyName: 'companyRegistrationNumber'
+      },
+    ]
+  },
 ];
 
 
