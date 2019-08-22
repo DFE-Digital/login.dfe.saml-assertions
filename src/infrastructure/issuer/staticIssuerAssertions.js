@@ -707,6 +707,11 @@ const issuerAssertions = [
     id: 'b45616a1-19a7-4a2e-966d-9e28c99bc6c6',
     assertions: [
       {
+        Type: 'sAMAccountName',
+        Value: '__user.id__',
+        FriendlyName: 'sAMAccountName'
+      },
+      {
         Type: 'urn:oid:2.5.4.42',
         Value: '__user.firstName__',
         FriendlyName: 'firstName'
