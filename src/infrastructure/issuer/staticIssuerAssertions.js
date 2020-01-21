@@ -796,29 +796,34 @@ const issuerAssertions = [
     id: 'b543b739-9791-4846-8638-cb35d66dd645',
     assertions: [
       {
-        Type: 'service',
+        Type: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn',
+        Value: '__user.email__',
+        FriendlyName: 'upn'
+      },
+      {
+        Type: 'http://schemas.portal.com/ukprn',
+        Value: '__organisation.ukprn__',
+        FriendlyName: 'ukprn'
+      },
+      {
+        Type: 'http://schemas.portal.com/service',
         Value: '__user.roles.codes__',
         FriendlyName: 'service',
       },
       {
-        Type: 'mail',
-        Value: '__user.email__',
-        FriendlyName: 'mail'
-      },
-      {
-        Type: 'displayname',
+        Type: 'http://schemas.portal.com/displayname',
         Value: '__user.firstName__ __user.lastName__',
         FriendlyName: 'displayname'
       },
       {
-        Type: 'usertype',
-        Value: 'ISP',
-        FriendlyName: 'usertype'
+        Type: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name',
+        Value: '__user.firstName__ __user.lastName__',
+        FriendlyName: 'name'
       },
       {
-        Type: 'ukprn',
-        Value: '__organisation.ukprn__',
-        FriendlyName: 'ukprn'
+        Type: 'http://schemas.portal.com/mail',
+        Value: '__user.email__',
+        FriendlyName: 'mail'
       },
     ]
   },
