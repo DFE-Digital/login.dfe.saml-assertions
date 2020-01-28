@@ -44,7 +44,8 @@ class userAssertionModel {
       textIdentifier: undefined,
       roles: {
         codes: undefined,
-      }
+      },
+      legacyUsername: undefined,
     };
     this.organisation = {
       id: undefined,
@@ -87,6 +88,7 @@ class userAssertionModel {
 
   setUserPropertiesFromAccount(account) {
     const status = userStatusMap.find(x => x.id === account.status);
+    const legacyIdamsUsername = account.legacyUsernames ? account.legacyUsernames.find(x => x.toLowerCase().startsWith('isp')) : null;
 
     this.user.id = account.sub;
     this.user.email = account.email;
@@ -95,6 +97,7 @@ class userAssertionModel {
     this.user.status.id = account.status;
     this.user.status.code = status ? status.code : '';
     this.user.status.name = status ? status.name : '';
+    this.user.legacyUsername = legacyIdamsUsername ? legacyIdamsUsername : account.sub;
 
     return this;
   }

@@ -797,7 +797,7 @@ const issuerAssertions = [
     assertions: [
       {
         Type: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn',
-        Value: '__user.email__',
+        Value: '__user.legacyUsername__',
         FriendlyName: 'upn'
       },
       {
