@@ -786,11 +786,6 @@ const issuerAssertions = [
         FriendlyName: 'typeCode'
       },
       {
-        Type: 'https://sa.education.gov.uk/idp/org/establishment/establishmentTypeName',
-        Value: '__organisation.category.name__',
-        FriendlyName: 'establishmentTypeName'
-      },
-      {
         Type: 'https://sa.education.gov.uk/idp/org/uID',
         Value: '__organisation.uid__',
         FriendlyName: 'uID'
