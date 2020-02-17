@@ -781,6 +781,21 @@ const issuerAssertions = [
         FriendlyName: 'establishmentTypeCode'
       },
       {
+        Type: 'https://sa.education.gov.uk/idp/org/typeCode',
+        Value: '__organisation.category.id__',
+        FriendlyName: 'typeCode'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/establishment/establishmentTypeName',
+        Value: '__organisation.category.name__',
+        FriendlyName: 'establishmentTypeName'
+      },
+      {
+        Type: 'https://sa.education.gov.uk/idp/org/uID',
+        Value: '__organisation.uid__',
+        FriendlyName: 'uID'
+      },
+      {
         Type: 'https://sa.education.gov.uk/idp/org/establishment/statutoryLowestAge',
         Value: '__organisation.lowAge__',
         FriendlyName: 'statutoryLowestAge'
