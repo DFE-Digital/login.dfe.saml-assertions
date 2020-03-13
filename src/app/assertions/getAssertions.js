@@ -38,37 +38,86 @@ const get = async (req, res) => {
         return res.status(404).send();
       }
     }
+    if(req.params.serviceId === 'b45616a1-19a7-4a2e-966d-9e28c99bc6c6') {
+      logger.info('New Corona Virus Test:: in OCS');
+      const services = await getServicesByUserId(req.params.userId, correlationId);
+      let service;
+      let organisation = null;
+      let issuerAssertion = null;
+      if(services) {
+        logger.info('New Corona Virus Test:: in services');
+        const servicesMeetingCriteria = services.filter(s => doesServiceMeetRequestCriteria(s, req));
+        service = servicesMeetingCriteria && servicesMeetingCriteria.length > 0 ? servicesMeetingCriteria[0] : undefined;
+      }
+      if(service) {
+        logger.info('New Corona Virus Test:: in service not null');
 
-    const services = await getServicesByUserId(req.params.userId, correlationId);
-    if (!services) {
-      return res.status(404).send();
+        organisation = await organisationApi.getOrganisationById(service.organisationId, correlationId);
+        if (!organisation) {
+          return res.status(404).send();
+        }
+        issuerAssertion = await issuerAssertions.getById(service.serviceId);
+        if (!issuerAssertion) {
+          return res.status(404).send();
+        }
+        const userAccountAssertionModel = new UserAccountAssertionModel()
+            .setUserPropertiesFromAccount(user)
+            .setUserPropertiesFromUserOrganisation(userOrganisation)
+            .setServicePropertiesFromService(service)
+            .setOrganisationPropertiesFromOrganisation(organisation)
+            .buildAssertions(issuerAssertion.assertions);
+        const result = userAccountAssertionModel.export();
+        res.send(result);
+      }else{
+        logger.info('New Corona Virus Test:: in service null');
+        organisation = await organisationApi.getOrganisationById(req.params.organisationId, correlationId);
+        if (!organisation) {
+          return res.status(404).send();
+        }
+        issuerAssertion = await issuerAssertions.getById(req.params.serviceId);
+        if (!issuerAssertion) {
+          return res.status(404).send();
+        }
+        const userAccountAssertionModel = new UserAccountAssertionModel()
+            .setUserPropertiesFromAccount(user)
+            .setUserPropertiesFromUserOrganisation(userOrganisation)
+            .setOrganisationPropertiesFromOrganisation(organisation)
+            .buildAssertions(issuerAssertion.assertions);
+        const result = userAccountAssertionModel.export();
+        res.send(result);
+      }
+    }else {
+      const services = await getServicesByUserId(req.params.userId, correlationId);
+      if (!services) {
+        return res.status(404).send();
+      }
+
+      const servicesMeetingCriteria = services.filter(s => doesServiceMeetRequestCriteria(s, req));
+      const service = servicesMeetingCriteria && servicesMeetingCriteria.length > 0 ? servicesMeetingCriteria[0] : undefined;
+      if (!service) {
+        return res.status(404).send();
+      }
+
+      const organisation = await organisationApi.getOrganisationById(service.organisationId, correlationId);
+      if (!organisation) {
+        return res.status(404).send();
+      }
+
+      const issuerAssertion = await issuerAssertions.getById(service.serviceId);
+      if (!issuerAssertion) {
+        return res.status(404).send();
+      }
+
+      const userAccountAssertionModel = new UserAccountAssertionModel()
+          .setUserPropertiesFromAccount(user)
+          .setUserPropertiesFromUserOrganisation(userOrganisation)
+          .setServicePropertiesFromService(service)
+          .setOrganisationPropertiesFromOrganisation(organisation)
+          .buildAssertions(issuerAssertion.assertions);
+
+      const result = userAccountAssertionModel.export();
+      res.send(result);
     }
-
-    const servicesMeetingCriteria = services.filter(s => doesServiceMeetRequestCriteria(s, req));
-    const service = servicesMeetingCriteria && servicesMeetingCriteria.length > 0 ? servicesMeetingCriteria[0] : undefined;
-    if (!service) {
-      return res.status(404).send();
-    }
-
-    const organisation = await organisationApi.getOrganisationById(service.organisationId, correlationId);
-    if (!organisation) {
-      return res.status(404).send();
-    }
-
-    const issuerAssertion = await issuerAssertions.getById(service.serviceId);
-    if (!issuerAssertion) {
-      return res.status(404).send();
-    }
-
-    const userAccountAssertionModel = new UserAccountAssertionModel()
-      .setUserPropertiesFromAccount(user)
-      .setUserPropertiesFromUserOrganisation(userOrganisation)
-      .setServicePropertiesFromService(service)
-      .setOrganisationPropertiesFromOrganisation(organisation)
-      .buildAssertions(issuerAssertion.assertions);
-
-    const result = userAccountAssertionModel.export();
-    res.send(result);
   } catch (e) {
     logger.error(e);
     res.status(500).send();
