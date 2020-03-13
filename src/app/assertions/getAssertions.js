@@ -39,19 +39,15 @@ const get = async (req, res) => {
       }
     }
     if(req.params.serviceId === 'b45616a1-19a7-4a2e-966d-9e28c99bc6c6') {
-      logger.info('New Corona Virus Test:: in OCS');
       const services = await getServicesByUserId(req.params.userId, correlationId);
       let service;
       let organisation = null;
       let issuerAssertion = null;
       if(services) {
-        logger.info('New Corona Virus Test:: in services');
         const servicesMeetingCriteria = services.filter(s => doesServiceMeetRequestCriteria(s, req));
         service = servicesMeetingCriteria && servicesMeetingCriteria.length > 0 ? servicesMeetingCriteria[0] : undefined;
       }
       if(service) {
-        logger.info('New Corona Virus Test:: in service not null');
-
         organisation = await organisationApi.getOrganisationById(service.organisationId, correlationId);
         if (!organisation) {
           return res.status(404).send();
@@ -69,7 +65,6 @@ const get = async (req, res) => {
         const result = userAccountAssertionModel.export();
         res.send(result);
       }else{
-        logger.info('New Corona Virus Test:: in service null');
         organisation = await organisationApi.getOrganisationById(req.params.organisationId, correlationId);
         if (!organisation) {
           return res.status(404).send();
