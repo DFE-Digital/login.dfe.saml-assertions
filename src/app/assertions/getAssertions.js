@@ -38,6 +38,9 @@ const get = async (req, res) => {
         return res.status(404).send();
       }
     }
+    // This is a temporary code which is specific to coronavirus form.
+    // This will bw updated based on online collections team fixes
+    // This UID is specific to online collection service in dfe signin so even in production this UID is same
     if(req.params.serviceId === 'b45616a1-19a7-4a2e-966d-9e28c99bc6c6') {
       const services = await getServicesByUserId(req.params.userId, correlationId);
       let service;
