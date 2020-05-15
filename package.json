@@ -35,7 +35,7 @@
     "login.dfe.jwt-strategies": "git+https://github.com/DFE-Digital/login.dfe.jwt-strategies.git#v3.0",
     "login.dfe.winston-appinsights": "git+https://github.com/DFE-Digital/login.dfe.winston-appinsights.git#v3.0",
     "morgan": "^1.9.1",
-    "request-promise": "^4.2.3",
+    "login.dfe.request-promise-retry": "git+https://github.com/DFE-Digital/login.dfe.request-promise-retry.git#v2.1",
     "request": "^2.88.0",
     "simpl-schema": "^1.5.6",
     "winston": "^2.4.4"
