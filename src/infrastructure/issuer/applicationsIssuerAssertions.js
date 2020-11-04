@@ -1,4 +1,5 @@
 const { getServiceById } = require('./../applications');
+const { services } = require('login.dfe.dao');
 
 let assertionsCache = [];
 
@@ -9,6 +10,7 @@ const getServiceFromCacheOrApi = async (id, correlationId) => {
   } else if (cached) {
     assertionsCache = assertionsCache.filter(x => x.id.toLowerCase() !== id.toLowerCase());
   }
+
 
   const application = await getServiceById(id, correlationId);
   if (!application) {
