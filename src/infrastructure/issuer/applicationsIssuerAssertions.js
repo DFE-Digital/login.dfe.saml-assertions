@@ -1,4 +1,5 @@
 const { getServiceById } = require('./../applications');
+const { services } = require('login.dfe.dao');
 
 let assertionsCache = [];
 
@@ -10,7 +11,8 @@ const getServiceFromCacheOrApi = async (id, correlationId) => {
     assertionsCache = assertionsCache.filter(x => x.id.toLowerCase() !== id.toLowerCase());
   }
 
-  const application = await getServiceById(id, correlationId);
+
+  const application = await services.getById(id);
   if (!application) {
     throw new Error(`Cannot get assertion mappings for service ${id} as it does not exist`, { correlationId });
   }
