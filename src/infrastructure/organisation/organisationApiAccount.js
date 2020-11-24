@@ -1,6 +1,7 @@
 const jwtStrategy = require('login.dfe.jwt-strategies');
 const config = require('./../config');
 const rp = require('login.dfe.request-promise-retry');
+const { organisation } = require('login.dfe.dao');
 
 
 const callOrganisationApi = async (resource, body, method, reqId) => {
@@ -46,14 +47,8 @@ const getOrganisationById = async (id, reqId) => {
 };
 
 const getOrganisationsForUser = async (userId, reqId) => {
-  const response = await callOrganisationApi(`organisations/associated-with-user/${userId}`, null, 'GET', reqId);
-  if (!response.success) {
-    if (response.statusCode === 404) {
-      return null;
-    }
-    throw new Error(response.errorMessage);
-  }
-  return response.result;
+  const result = await organisation.getOrganisationsForUserIncludingServices(userId);
+  return result;
 };
 
 module.exports = {
