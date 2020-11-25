@@ -6,6 +6,7 @@ const organisationApi = require('./../../infrastructure/organisation');
 const UserAccountAssertionModel = require('./userAssertionModel');
 const issuerAssertions = require('./../../infrastructure/issuer');
 const { getServicesByUserId } = require('./../../infrastructure/access');
+const { directories } = require('login.dfe.dao');
 const doesServiceMeetRequestCriteria = (service, req) => {
   if (service.serviceId.toLowerCase() !== req.params.serviceId.toLowerCase()) {
     return false;
@@ -42,7 +43,7 @@ const get = async (req, res) => {
     // This will bw updated based on online collections team fixes
     // This UID is specific to online collection service in dfe signin so even in production this UID is same
     if(req.params.serviceId === 'b45616a1-19a7-4a2e-966d-9e28c99bc6c6') {
-      const services = await getServicesByUserId(req.params.userId, correlationId);
+      const services = await directories.getUserServices(req.params.userId);
       let service;
       let organisation = null;
       let issuerAssertion = null;
@@ -85,7 +86,7 @@ const get = async (req, res) => {
         res.send(result);
       }
     }else {
-      const services = await getServicesByUserId(req.params.userId, correlationId);
+      const services = await directories.getUserServices(req.params.userId);
       if (!services) {
         return res.status(404).send();
       }
