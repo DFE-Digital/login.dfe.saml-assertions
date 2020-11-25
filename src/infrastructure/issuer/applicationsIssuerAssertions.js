@@ -1,4 +1,3 @@
-const { getServiceById } = require('./../applications');
 const { services } = require('login.dfe.dao');
 
 let assertionsCache = [];
