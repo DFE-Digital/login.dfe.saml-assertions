@@ -23,9 +23,40 @@ jest.mock('./../../src/infrastructure/config', () => ({
     type: 'static',
   },
 }));
+
+jest.mock('login.dfe.dao', () => {
+  return {
+    directories: {
+      getUserServices: async (ids) => {
+        return [
+          {
+            "userId": "77D6B281-9F8D-4649-84B8-87FC42EEE71D",
+            "serviceId": "3BFDE961-F061-4786-B618-618DEAF96E44",
+            "organisationId": "9ceb2799-e34c-4398-9301-46d7c73af9d6",
+            "roles": [
+              {
+                "id": "E53644D0-4B4A-43BD-92A9-F019EC63F978",
+                "name": "Dev User",
+                "code": "USER",
+                "numericId": "3",
+                "status": 1
+              }
+            ],
+            "identifiers": [
+              {
+                "key": "groups","value": "USER"
+              },
+              {key: 'k2s-id', value: '654322'}
+            ]
+          }
+        ];
+      },
+    },
+  };
+});
+
 jest.mock('./../../src/infrastructure/account');
 jest.mock('./../../src/infrastructure/organisation');
-jest.mock('./../../src/infrastructure/access');
 jest.mock('./../../src/infrastructure/issuer');
 const httpMocks = require('node-mocks-http');
 const accountAssertionModel = require('./../../src/app/assertions/userAssertionModel');
@@ -136,7 +167,7 @@ describe('When getting issuer assertions', () => {
     account.getById = getUserByIdStub;
 
     getOrganisationServicesByUserId = jest.fn().mockReturnValue(orgUser);
-    organisationService = require('./../../src/infrastructure/access');
+    //organisationService = require('./../../src/infrastructure/access');
     //organisationService.getServicesByUserId = getOrganisationServicesByUserId;
     getOrganisations = require('./../../src/infrastructure/organisation');
     getOrganisationsById = jest.fn().mockReturnValue(org1);
