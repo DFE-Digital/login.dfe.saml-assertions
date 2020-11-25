@@ -167,8 +167,6 @@ describe('When getting issuer assertions', () => {
     account.getById = getUserByIdStub;
 
     getOrganisationServicesByUserId = jest.fn().mockReturnValue(orgUser);
-    //organisationService = require('./../../src/infrastructure/access');
-    //organisationService.getServicesByUserId = getOrganisationServicesByUserId;
     getOrganisations = require('./../../src/infrastructure/organisation');
     getOrganisationsById = jest.fn().mockReturnValue(org1);
     getOrganisations.getOrganisationById = getOrganisationsById;
@@ -208,15 +206,7 @@ describe('When getting issuer assertions', () => {
 
     expect(res.statusCode).toBe(404);
   });
-/*  it('then if the org service is not found a 404 is returned', async () => {
-    account.getById.mockReset();
-    organisationService.getServicesByUserId.mockReset();
-    organisationService.getServicesByUserId.mockReturnValue(null);
 
-    await get(req, res);
-
-    expect(res.statusCode).toBe(404);
-  });*/
   it('then if the org service is not in the list of available services a 404 is returned', async () => {
     req.params.serviceId = '123456';
 
