@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env": {
+                "settings": "${workspaceFolder}/../login.dfe.config/local-env/login.dfe.saml-assertions.local.json"
+            },
+            "program": "${file}"
+        }
+    ]
+}
