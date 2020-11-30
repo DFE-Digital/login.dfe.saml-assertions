@@ -25,10 +25,11 @@ const get = async (req, res) => {
       return res.status(400).send();
     }
 
-    const user = await accountApi.getById(req.params.userId, correlationId);
+    const user = await directories.getUser(req.params.userId);
     if (!user) {
       return res.status(404).send();
     }
+    console.log('User sub -'+user.sub)
 
     let userOrganisation;
     if (req.params.organisationId) {

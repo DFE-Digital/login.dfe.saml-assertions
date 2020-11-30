@@ -22,7 +22,7 @@ const accounts = [
   },
 ];
 
-
+/*
 const getById = async (id) => {
   const account = accounts.find(item => item.sub.toLowerCase() === id.toLowerCase());
   return Promise.resolve(account || null);
@@ -31,3 +31,4 @@ const getById = async (id) => {
 module.exports = {
   getById,
 };
+*/
