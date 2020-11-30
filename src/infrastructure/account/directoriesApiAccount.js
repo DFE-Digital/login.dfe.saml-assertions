@@ -3,6 +3,7 @@ const config = require('./../config');
 
 const rp = require('login.dfe.request-promise-retry');
 
+/*
 
 const callDirectoriesApi = async (resource, body, method, reqId) => {
   const token = await jwtStrategy(config.directories.service).getBearerToken();
@@ -50,3 +51,4 @@ const getById = async (id, reqId) => {
 module.exports = {
   getById,
 };
+*/
