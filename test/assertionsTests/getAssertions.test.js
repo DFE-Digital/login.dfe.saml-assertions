@@ -70,7 +70,6 @@ jest.mock('login.dfe.dao', () => {
   };
 });
 
-jest.mock('./../../src/infrastructure/account');
 jest.mock('./../../src/infrastructure/organisation');
 jest.mock('./../../src/infrastructure/issuer');
 const httpMocks = require('node-mocks-http');
@@ -178,8 +177,6 @@ describe('When getting issuer assertions', () => {
     logger.error = (() => ({}));
 
     getUserByIdStub = jest.fn().mockReturnValue(user);
-    account = require('./../../src/infrastructure/account');
-    account.getById = getUserByIdStub;
 
     getOrganisationServicesByUserId = jest.fn().mockReturnValue(orgUser);
     getOrganisations = require('./../../src/infrastructure/organisation');
@@ -222,9 +219,6 @@ describe('When getting issuer assertions', () => {
     expect(res.statusCode).toBe(404);
   });
   it('then if the record is found it is returned in the response', async () => {
-    //account.getById.mockReset();
-    account.getById.mockReturnValue(user);
-
 
     await get(req, res);
 
@@ -260,8 +254,6 @@ describe('When getting issuer assertions', () => {
 
   it('then it should select service mapping for org when org specified', async () => {
     req.params.organisationId = '9ceb2799-e34c-4398-9301-46d7c73af9d6';
-    account.getById.mockReset();
-    account.getById.mockReturnValue(user);
 
     await get(req, res);
 
