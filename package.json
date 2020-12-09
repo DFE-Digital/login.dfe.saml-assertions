@@ -39,7 +39,7 @@
     "request": "^2.88.0",
     "simpl-schema": "^1.5.6",
     "winston": "^2.4.4",
-    "login.dfe.dao": "1.0.39"
+    "login.dfe.dao": "1.0.41"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
