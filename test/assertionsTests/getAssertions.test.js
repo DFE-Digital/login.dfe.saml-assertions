@@ -23,9 +23,54 @@ jest.mock('./../../src/infrastructure/config', () => ({
     type: 'static',
   },
 }));
-jest.mock('./../../src/infrastructure/account');
+
+jest.mock('login.dfe.dao', () => {
+  return {
+    directories: {
+      getUserServices: async (ids) => {
+        return [
+          {
+            "userId": "77D6B281-9F8D-4649-84B8-87FC42EEE71D",
+            "serviceId": "3BFDE961-F061-4786-B618-618DEAF96E44",
+            "organisationId": "9ceb2799-e34c-4398-9301-46d7c73af9d6",
+            "roles": [
+              {
+                "id": "E53644D0-4B4A-43BD-92A9-F019EC63F978",
+                "name": "Dev User",
+                "code": "USER",
+                "numericId": "3",
+                "status": 1
+              }
+            ],
+            "identifiers": [
+              {
+                "key": "groups","value": "USER"
+              },
+              {key: 'k2s-id', value: '654322'}
+            ]
+          }
+        ];
+      },
+      getUser: async (id) => {
+        return(
+          {
+            "sub": "123EDCF",
+            "email": "test@user.com",
+            "given_name": "test",
+            "family_name": "te",
+            "status": 1,
+            "phone_number": null,
+            "last_login": "2020-11-30T11:55:35.783Z",
+            "isMigrated": false,
+            "createdAt": "2019-11-25T11:51:18.823Z",
+            "updatedAt": "2020-11-30T11:55:35.785Z"
+          });
+      },
+    },
+  };
+});
+
 jest.mock('./../../src/infrastructure/organisation');
-jest.mock('./../../src/infrastructure/access');
 jest.mock('./../../src/infrastructure/issuer');
 const httpMocks = require('node-mocks-http');
 const accountAssertionModel = require('./../../src/app/assertions/userAssertionModel');
@@ -132,12 +177,8 @@ describe('When getting issuer assertions', () => {
     logger.error = (() => ({}));
 
     getUserByIdStub = jest.fn().mockReturnValue(user);
-    account = require('./../../src/infrastructure/account');
-    account.getById = getUserByIdStub;
 
     getOrganisationServicesByUserId = jest.fn().mockReturnValue(orgUser);
-    organisationService = require('./../../src/infrastructure/access');
-    organisationService.getServicesByUserId = getOrganisationServicesByUserId;
     getOrganisations = require('./../../src/infrastructure/organisation');
     getOrganisationsById = jest.fn().mockReturnValue(org1);
     getOrganisations.getOrganisationById = getOrganisationsById;
@@ -169,23 +210,7 @@ describe('When getting issuer assertions', () => {
 
     expect(res.statusCode).toBe(400);
   });
-  it('then if the user is not found a 404 is returned', async () => {
-    account.getById.mockReset();
-    account.getById.mockReturnValue(null);
 
-    await get(req, res);
-
-    expect(res.statusCode).toBe(404);
-  });
-  it('then if the org service is not found a 404 is returned', async () => {
-    account.getById.mockReset();
-    organisationService.getServicesByUserId.mockReset();
-    organisationService.getServicesByUserId.mockReturnValue(null);
-
-    await get(req, res);
-
-    expect(res.statusCode).toBe(404);
-  });
   it('then if the org service is not in the list of available services a 404 is returned', async () => {
     req.params.serviceId = '123456';
 
@@ -194,8 +219,6 @@ describe('When getting issuer assertions', () => {
     expect(res.statusCode).toBe(404);
   });
   it('then if the record is found it is returned in the response', async () => {
-    account.getById.mockReset();
-    account.getById.mockReturnValue(user);
 
     await get(req, res);
 
@@ -203,8 +226,6 @@ describe('When getting issuer assertions', () => {
     expect(res._getData().email).toBe(expectedUserEmail);
     expect(res._getData().user_id).toBe(expectedUserId);
     expect(res._getData().kts_id).toBe(expectedKtsId);
-    expect(account.getById.mock.calls[0][0]).toBe(expectedUserId);
-    expect(account.getById.mock.calls[0][1]).toBe(expectedRequestCorrelationId);
   });
   it('then the assertionServices storage is called', async () => {
     await get(req, res);
@@ -231,21 +252,8 @@ describe('When getting issuer assertions', () => {
     expect(res._getData().Assertions[1].Value).toBe(expectedKtsId);
   });
 
-  it('then a 500 response is returned if there is an error', async () => {
-    account.getById.mockReset();
-    account.getById = () => {
-      throw new Error();
-    };
-
-    await get(req, res);
-
-    expect(res.statusCode).toBe(500);
-  });
-
   it('then it should select service mapping for org when org specified', async () => {
     req.params.organisationId = '9ceb2799-e34c-4398-9301-46d7c73af9d6';
-    account.getById.mockReset();
-    account.getById.mockReturnValue(user);
 
     await get(req, res);
 
