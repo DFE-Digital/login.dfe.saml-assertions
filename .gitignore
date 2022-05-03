@@ -58,8 +58,7 @@ typings/
 .env
 
 # Dev env
-/config/
-!/config/login.dfe.saml-assertions.dev.json
+/config
 
 .idea/workspace.xml
 .idea/watcherTasks.xml
@@ -67,3 +66,5 @@ access.log
 \.idea/markdown-navigator\.xml
 
 \.idea/markdown-navigator/
+
+.npmrc
