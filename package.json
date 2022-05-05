@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "settings='./config/login.dfe.saml-assertions.dev.json' node src/index.js",
+    "dev": "settings='./config/login.dfe.saml-assertions.dev.json' nodemon src/index.js",
     "test": "./node_modules/.bin/jest"
   },
   "engines": {
@@ -37,6 +37,7 @@
     "login.dfe.request-promise-retry": "git+https://github.com/DFE-Digital/login.dfe.request-promise-retry.git#v2.1",
     "login.dfe.winston-appinsights": "git+https://github.com/DFE-Digital/login.dfe.winston-appinsights.git#4.0",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.16",
     "request": "^2.88.2",
     "simpl-schema": "^1.12.0",
     "winston": "^2.4.4"
