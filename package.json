@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "settings='./config/login.dfe.saml-assertions.dev.json' nodemon src/index.js",
     "test": "./node_modules/.bin/jest",
-    "dev:container":"nodemon src/index.js"
+    "dev:container": "nodemon src/index.js"
   },
   "engines": {
     "node": "14.x.x"
@@ -31,7 +31,7 @@
     "lodash": "^4.17.21",
     "login.dfe.api.auth": "github:DFE-Digital/login.dfe.api.auth#v2.1.0",
     "login.dfe.config.schema.common": "git+https://github.com/DFE-Digital/login.dfe.config.schema.common.git#v1.9.4",
-    "login.dfe.dao": "2.0.1",
+    "login.dfe.dao": "2.9.2",
     "login.dfe.express-error-handling": "git+https://github.com/DFE-Digital/login.dfe.express-error-handling.git#v2.2.0",
     "login.dfe.healthcheck": "git+https://github.com/DFE-Digital/login.dfe.healthcheck.git#v2.2.1",
     "login.dfe.jwt-strategies": "git+https://github.com/DFE-Digital/login.dfe.jwt-strategies.git#v3.0.1",
