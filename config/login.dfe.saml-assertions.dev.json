@@ -1,0 +1,133 @@
+{
+  "loggerSettings": {
+    "logLevel": "info",
+    "applicationName": "SAML Assertions API",
+      "auditDb": {
+        "host": "{{platformGlobalServerName}}",
+        "username":"{{svcSigninAdt}}",
+        "password":"{{svcSigninAdtPassword}}",
+        "dialect": "mssql",
+        "name": "{{platformGlobalAuditDatabaseName}}",
+        "encrypt": true,
+        "schema": "dbo",
+        "pool": {
+            "max": 15,
+            "min": 0,
+            "acquire": 30000,
+            "idle": 10000
+        }
+    }
+  },
+  "hostingEnvironment": {
+    "env": "azure",
+    "host": "{{standaloneAssertionsHostName}}",
+    "port": 443,
+    "protocol": "https",
+    "applicationInsights": "{{appInsightsInstrumentationKey}}",
+    "agentKeepAlive" : {
+      "maxSockets":35,
+      "maxFreeSockets":10,
+      "timeout":60000,
+      "keepAliveTimeout":30000
+    }
+  },
+  "directories": {
+    "type": "api",
+    "service": {
+      "url": "https://{{standaloneDirectoriesHostName}}",
+      "auth": {
+        "type": "aad",
+        "tenant": "{{platformGlobalTenantDomain}}",
+        "authorityHostUrl": "{{tenantUrl}}",
+        "clientId": "{{aadshdclientid}}",
+        "clientSecret": "{{aadshdclientsecret}}",
+        "resource": "{{aadshdappid}}"
+      }
+    }
+  },
+  "organisations": {
+    "type": "api",
+    "service": {
+      "url": "https://{{standaloneOrganisationsHostName}}",
+      "auth": {
+        "type": "aad",
+        "tenant": "{{platformGlobalTenantDomain}}",
+        "authorityHostUrl": "{{tenantUrl}}",
+        "clientId": "{{aadshdclientid}}",
+        "clientSecret": "{{aadshdclientsecret}}",
+        "resource": "{{aadshdappid}}"
+      }
+    }
+  },
+  "access": {
+    "type": "api",
+    "service": {
+      "url": "https://{{standaloneAccessHostName}}",
+      "auth": {
+        "type": "aad",
+        "tenant": "{{platformGlobalTenantDomain}}",
+        "authorityHostUrl": "{{tenantUrl}}",
+        "clientId": "{{aadshdclientid}}",
+        "clientSecret": "{{aadshdclientsecret}}",
+        "resource": "{{aadshdappid}}"
+      }
+    }
+  },
+  "applications": {
+    "type": "api",
+    "service": {
+        "url": "https://{{standaloneApplicationsHostName}}",
+        "auth": {
+            "type": "aad",
+            "tenant": "{{platformGlobalTenantDomain}}",
+            "authorityHostUrl": "{{tenantUrl}}",
+            "clientId": "{{aadshdclientid}}",
+            "clientSecret": "{{aadshdclientsecret}}",
+            "resource": "{{aadshdappid}}"
+        }
+    }
+  },
+  "assertions" :{
+    "type": "static"
+  },
+  "auth": {
+    "type": "secret",
+    "secret": "{{assertionsSecret}}"
+  },
+  "adapter": {
+    "type": "sequelize",
+    "directories": {
+      "host": "{{platformGlobalServerName}}",
+      "username": "{{svcSigninDir}}",
+      "password": "{{svcSigninDirPassword}}",
+      "dialect": "mssql",
+      "name": "{{platformGlobalDirectoriesDatabaseName}}",
+      "encrypt": true,
+      "schema": "dbo",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    },
+    "organisation": {
+      "host": "{{platformGlobalServerName}}",
+      "username": "{{svcSigninOrg}}",
+      "password": "{{svcSigninOrgPassword}}",
+      "dialect": "mssql",
+      "name": "{{platformGlobalOrganisationsDatabaseName}}",
+      "encrypt": true,
+      "schema": "dbo",
+      "pool": {
+        "max": 10,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+  },
+  "notifications": {
+    "connectionString": "{{redisConn}}/4?tls=true"
+  }
+}

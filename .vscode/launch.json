@@ -4,14 +4,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Saml Assertions",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "env": {
-                "settings": "${workspaceFolder}/../login.dfe.config/local-env/login.dfe.saml-assertions.local.json"
+                "settings": "${workspaceFolder}/config/local-config.json"
             },
-            "program": "${file}"
+            "program": "${workspaceFolder}/src/index.js",
+            "outputCapture": "std"
         }
     ]
 }
