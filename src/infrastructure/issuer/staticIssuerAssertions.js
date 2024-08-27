@@ -561,6 +561,11 @@ const issuerAssertions = [
         FriendlyName: 'uID'
       },
       {
+        Type: 'https://sa.education.gov.uk/idp/org/uPIN',
+        Value: '__organisation.upin__',
+        FriendlyName: 'uPIN'
+      },
+      {
         Type: 'https://sa.education.gov.uk/idp/org/establishment/statutoryLowestAge',
         Value: '__organisation.lowAge__',
         FriendlyName: 'statutoryLowestAge'

@@ -132,6 +132,7 @@ class userAssertionModel {
     this.organisation.establishmentNumber = organisation.establishmentNumber;
     this.organisation.urn = organisation.urn;
     this.organisation.uid = organisation.uid;
+    this.organisation.upin = organisation.upin;
     this.organisation.ukprn = organisation.ukprn;
     this.organisation.telephone = organisation.telephone;
     this.organisation.lowAge = organisation.statutoryLowAge;
