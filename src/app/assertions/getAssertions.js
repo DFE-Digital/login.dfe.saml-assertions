@@ -1,5 +1,3 @@
-"use strict";
-
 const logger = require("./../../infrastructure/logger");
 const organisationApi = require("./../../infrastructure/organisation");
 const UserAccountAssertionModel = require("./userAssertionModel");

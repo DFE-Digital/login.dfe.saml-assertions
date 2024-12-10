@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 const config = require("./../config");
 
 let account;

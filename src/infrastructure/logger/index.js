@@ -1,5 +1,3 @@
-"use strict";
-
 const { createLogger, format, transports } = require("winston");
 const appInsights = require("applicationinsights");
 const AppInsightsTransport = require("login.dfe.winston-appinsights");
