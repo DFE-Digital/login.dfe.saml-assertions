@@ -22,7 +22,7 @@ jest.mock("./../../src/infrastructure/config", () => ({
 jest.mock("login.dfe.dao", () => {
   return {
     directories: {
-      getUserServices: async (ids) => {
+      getUserServices: async () => {
         return [
           {
             userId: "77D6B281-9F8D-4649-84B8-87FC42EEE71D",
@@ -47,7 +47,7 @@ jest.mock("login.dfe.dao", () => {
           },
         ];
       },
-      getUser: async (id) => {
+      getUser: async () => {
         return {
           sub: "123EDCF",
           email: "test@user.com",
@@ -68,28 +68,22 @@ jest.mock("login.dfe.dao", () => {
 jest.mock("./../../src/infrastructure/organisation");
 jest.mock("./../../src/infrastructure/issuer");
 const httpMocks = require("node-mocks-http");
-const accountAssertionModel = require("./../../src/app/assertions/userAssertionModel");
 
 describe("When getting issuer assertions", () => {
   let req;
   let res;
   let logger;
   let get;
-  let getUserByIdStub;
-  let getOrganisationServicesByUserId;
   let getOrganisations;
   let getOrganisationsById;
   let getOrganisationsForUser;
   let getIssuerAssertions;
-  let account;
-  let organisationService;
   let issuerAssertions;
   const expectedKtsId = "654322";
   const expectedUserId = "123EDCF";
   const expectedServiceId = "3BFDE961-F061-4786-B618-618DEAF96E44";
   const expectedUserEmail = "test@user.com";
   const expectedRequestCorrelationId = "41ab33e5-4c27-12e9-3451-abb349b12f35";
-  const user = { sub: expectedUserId, email: expectedUserEmail };
   const issuerAssertion = {
     id: "DQT1",
     assertions: [
@@ -116,45 +110,6 @@ describe("When getting issuer assertions", () => {
     name: "Test Org",
   };
 
-  const orgUser = [
-    {
-      serviceId: "3BFDE961-F061-4786-B618-618DEAF96E44",
-      name: "Test Service (TS)",
-      description: "A searchable test service.",
-      status: 1,
-      userId: "77D6B281-9F8D-4649-84B8-87FC42EEE71D",
-      requestDate: "2017-01-01T00:00:00.000Z",
-      approvers: [],
-      organisationId: "88A1ED39-5A98-43DA-B66E-78E564EA72B0",
-      role: {
-        id: 0,
-        name: "End user",
-      },
-      identifiers: [
-        { key: "k2s-id", value: expectedKtsId },
-        { key: "Some_Id", value: "777777" },
-      ],
-    },
-    {
-      serviceId: "3BFDE961-F061-4786-B618-618DEAF96E44",
-      name: "Test Service 2 (TS)",
-      description: "Second searchable test service.",
-      status: 1,
-      userId: "77D6B281-9F8D-4649-84B8-87FC42EEE71D",
-      requestDate: "2017-01-01T00:00:00.000Z",
-      approvers: [],
-      organisationId: "9ceb2799-e34c-4398-9301-46d7c73af9d6",
-      role: {
-        id: 0,
-        name: "End user",
-      },
-      identifiers: [
-        { key: "k2s-id", value: expectedKtsId },
-        { key: "Some_Id", value: "88888888" },
-      ],
-    },
-  ];
-
   beforeEach(() => {
     res = httpMocks.createResponse();
     req = {
@@ -172,10 +127,6 @@ describe("When getting issuer assertions", () => {
 
     logger = require("./../../src/infrastructure/logger");
     logger.error = () => ({});
-
-    getUserByIdStub = jest.fn().mockReturnValue(user);
-
-    getOrganisationServicesByUserId = jest.fn().mockReturnValue(orgUser);
     getOrganisations = require("./../../src/infrastructure/organisation");
     getOrganisationsById = jest.fn().mockReturnValue(org1);
     getOrganisations.getOrganisationById = getOrganisationsById;
