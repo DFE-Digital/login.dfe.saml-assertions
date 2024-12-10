@@ -1,11 +1,14 @@
-'use strict';
+"use strict";
 
-const { createLogger, format, transports } = require('winston');
-const appInsights = require('applicationinsights');
-const AppInsightsTransport = require('login.dfe.winston-appinsights');
-const config = require('../config');
+const { createLogger, format, transports } = require("winston");
+const appInsights = require("applicationinsights");
+const AppInsightsTransport = require("login.dfe.winston-appinsights");
+const config = require("../config");
 
-const logLevel = (config && config.loggerSettings && config.loggerSettings.logLevel) ? config.loggerSettings.logLevel : 'info';
+const logLevel =
+  config && config.loggerSettings && config.loggerSettings.logLevel
+    ? config.loggerSettings.logLevel
+    : "info";
 
 const levelsAndColor = {
   levels: {
@@ -18,41 +21,45 @@ const levelsAndColor = {
     silly: 6,
   },
   colors: {
-    info: 'yellow',
-    ok: 'green',
-    error: 'red',
-    audit: 'magenta',
+    info: "yellow",
+    ok: "green",
+    error: "red",
+    audit: "magenta",
   },
 };
 
 const loggerConfig = {
   levels: levelsAndColor.levels,
   colorize: true,
-  format: format.combine(
-    format.simple(),
-  ),
+  format: format.combine(format.simple()),
   transports: [],
 };
 
-loggerConfig.transports.push(new (transports.Console)({ level: logLevel, colorize: true }));
+loggerConfig.transports.push(
+  new transports.Console({ level: logLevel, colorize: true }),
+);
 
 if (config.hostingEnvironment.applicationInsights) {
-  appInsights.setup(config.hostingEnvironment.applicationInsights)
+  appInsights
+    .setup(config.hostingEnvironment.applicationInsights)
     .setAutoCollectConsole(false, false)
     .setSendLiveMetrics(config.loggerSettings.aiSendLiveMetrics || false)
     .start();
-  loggerConfig.transports.push(new AppInsightsTransport({
-    client: appInsights.defaultClient,
-    applicationName: config.loggerSettings.applicationName || 'SamlAssertions',
-    type: 'event',
-    treatErrorsAsExceptions: true,
-  }));
+  loggerConfig.transports.push(
+    new AppInsightsTransport({
+      client: appInsights.defaultClient,
+      applicationName:
+        config.loggerSettings.applicationName || "SamlAssertions",
+      type: "event",
+      treatErrorsAsExceptions: true,
+    }),
+  );
 }
 
 const logger = createLogger(loggerConfig);
 
-process.on('unhandledRejection', (reason, p) => {
-  logger.error('Unhandled Rejection at:', p, 'reason:', reason);
+process.on("unhandledRejection", (reason, p) => {
+  logger.error("Unhandled Rejection at:", p, "reason:", reason);
 });
 
 module.exports = logger;
