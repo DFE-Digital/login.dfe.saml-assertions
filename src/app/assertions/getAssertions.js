@@ -20,7 +20,6 @@ const doesServiceMeetRequestCriteria = (service, req) => {
 };
 
 const get = async (req, res) => {
-  const correlationId = req.header("x-correlation-id");
   try {
     if (!req.params.userId || !req.params.serviceId) {
       return res.status(400).send();
@@ -35,10 +34,8 @@ const get = async (req, res) => {
     let userOrganisation;
     if (req.params.organisationId) {
       const userOrganisations =
-        (await organisationApi.getOrganisationsForUser(
-          req.params.userId,
-          correlationId,
-        )) || [];
+        (await organisationApi.getOrganisationsForUser(req.params.userId)) ||
+        [];
       userOrganisation = userOrganisations.find(
         (x) =>
           x.organisation.id.toLowerCase() ===
@@ -68,7 +65,6 @@ const get = async (req, res) => {
       if (service) {
         organisation = await organisationApi.getOrganisationById(
           service.organisationId,
-          correlationId,
         );
         if (!organisation) {
           return res.status(404).send();
@@ -88,7 +84,6 @@ const get = async (req, res) => {
       } else {
         organisation = await organisationApi.getOrganisationById(
           req.params.organisationId,
-          correlationId,
         );
         if (!organisation) {
           return res.status(404).send();
@@ -124,7 +119,6 @@ const get = async (req, res) => {
 
       const organisation = await organisationApi.getOrganisationById(
         service.organisationId,
-        correlationId,
       );
       if (!organisation) {
         return res.status(404).send();

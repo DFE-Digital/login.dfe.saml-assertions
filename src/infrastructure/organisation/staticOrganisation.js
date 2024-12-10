@@ -25,7 +25,7 @@ const getOrganisationById = async (id) => {
   );
   return Promise.resolve(account || null);
 };
-const getOrganisationsForUser = async (userId, reqId) => {
+const getOrganisationsForUser = async () => {
   return Promise.resolve([]);
 };
 
