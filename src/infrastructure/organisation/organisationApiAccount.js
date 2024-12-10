@@ -1,4 +1,4 @@
-const { organisation } = require('login.dfe.dao');
+const { organisation } = require("login.dfe.dao");
 
 const getOrganisationById = async (id, reqId) => {
   const result = await organisation.getOrganisation(id);
@@ -6,7 +6,8 @@ const getOrganisationById = async (id, reqId) => {
 };
 
 const getOrganisationsForUser = async (userId, reqId) => {
-  const result = await organisation.getOrganisationsForUserIncludingServices(userId);
+  const result =
+    await organisation.getOrganisationsForUserIncludingServices(userId);
   return result;
 };
 
