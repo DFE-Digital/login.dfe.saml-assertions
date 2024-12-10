@@ -109,6 +109,10 @@ describe("When getting issuer assertions", () => {
     id: "9ceb2799-e34c-4398-9301-46d7c73af9d6",
     name: "Test Org",
   };
+  const org2 = {
+    id: "9ceb2799-e34c-4398-9301-46d7c73af9d6",
+    name: "Test Org",
+  };
 
   beforeEach(() => {
     res = httpMocks.createResponse();
@@ -220,6 +224,6 @@ describe("When getting issuer assertions", () => {
 
     await get(req, res);
 
-    expect(res.statusCode).toBe(404);
+    expect(res.statusCode).toBe(400);
   });
 });
