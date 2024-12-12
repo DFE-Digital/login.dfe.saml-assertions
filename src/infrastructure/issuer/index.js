@@ -1,11 +1,10 @@
-/* eslint-disable global-require */
-const config = require('./../config');
+const config = require("./../config");
 
 let account;
-if (config.assertions.type.toLowerCase() === 'applications') {
-  account = require('./applicationsIssuerAssertions');
+if (config.assertions.type.toLowerCase() === "applications") {
+  account = require("./applicationsIssuerAssertions");
 } else {
-  account = require('./staticIssuerAssertions');
+  account = require("./staticIssuerAssertions");
 }
 
 module.exports = account;

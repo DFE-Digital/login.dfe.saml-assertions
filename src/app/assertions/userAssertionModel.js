@@ -1,8 +1,8 @@
 const userStatusMap = [
-  { id: -2, code: 'deactivated-invitation', name: 'Deactivated Invitation' },
-  { id: -1, code: 'invited', name: 'Invited' },
-  { id: 0, code: 'deactivated', name: 'Deactivated' },
-  { id: 1, code: 'active', name: 'Active' },
+  { id: -2, code: "deactivated-invitation", name: "Deactivated Invitation" },
+  { id: -1, code: "invited", name: "Invited" },
+  { id: 0, code: "deactivated", name: "Deactivated" },
+  { id: 1, code: "active", name: "Active" },
 ];
 
 const getAssertionValues = (model, parentPath) => {
@@ -25,7 +25,6 @@ const getAssertionValues = (model, parentPath) => {
 
   return assertionValues;
 };
-
 
 class userAssertionModel {
   constructor() {
@@ -85,19 +84,22 @@ class userAssertionModel {
     this.assertions = [];
   }
 
-
   setUserPropertiesFromAccount(account) {
-    const status = userStatusMap.find(x => x.id === account.status);
-    const legacyIdamsUsername = account.legacyUsernames ? account.legacyUsernames.find(x => x.toLowerCase().startsWith('isp')) : null;
+    const status = userStatusMap.find((x) => x.id === account.status);
+    const legacyIdamsUsername = account.legacyUsernames
+      ? account.legacyUsernames.find((x) => x.toLowerCase().startsWith("isp"))
+      : null;
 
     this.user.id = account.sub;
     this.user.email = account.email;
     this.user.firstName = account.given_name;
     this.user.lastName = account.family_name;
     this.user.status.id = account.status;
-    this.user.status.code = status ? status.code : '';
-    this.user.status.name = status ? status.name : '';
-    this.user.legacyUsername = legacyIdamsUsername ? legacyIdamsUsername : account.sub;
+    this.user.status.code = status ? status.code : "";
+    this.user.status.name = status ? status.name : "";
+    this.user.legacyUsername = legacyIdamsUsername
+      ? legacyIdamsUsername
+      : account.sub;
 
     return this;
   }
@@ -114,13 +116,15 @@ class userAssertionModel {
   setServicePropertiesFromService(service) {
     this.user.externalIdentifiers = service.identifiers;
 
-    const ktsId = service.identifiers.find(filter => filter.key.toLowerCase() === 'k2s-id');
+    const ktsId = service.identifiers.find(
+      (filter) => filter.key.toLowerCase() === "k2s-id",
+    );
     if (ktsId) {
       this.user.ktsId = ktsId.value;
     }
 
     if (service.roles) {
-      this.user.roles.codes = service.roles.map(r => r.code).join(', ');
+      this.user.roles.codes = service.roles.map((r) => r.code).join(", ");
     }
 
     return this;
@@ -138,14 +142,18 @@ class userAssertionModel {
     this.organisation.lowAge = organisation.statutoryLowAge;
     this.organisation.highAge = organisation.statutoryHighAge;
     this.organisation.legacyId = organisation.legacyId;
-    this.organisation.dfeNumber = organisation.localAuthority && organisation.localAuthority.code && organisation.establishmentNumber
-      ? `${organisation.localAuthority.code}${organisation.establishmentNumber}` : undefined;
+    this.organisation.dfeNumber =
+      organisation.localAuthority &&
+      organisation.localAuthority.code &&
+      organisation.establishmentNumber
+        ? `${organisation.localAuthority.code}${organisation.establishmentNumber}`
+        : undefined;
 
     if (organisation.localAuthority) {
       this.localAuthority.id = organisation.localAuthority.id;
       this.localAuthority.name = organisation.localAuthority.name;
       this.localAuthority.code = organisation.localAuthority.code;
-    } else if (organisation.category && organisation.category.id === '002') {
+    } else if (organisation.category && organisation.category.id === "002") {
       this.localAuthority.id = organisation.id;
       this.localAuthority.name = organisation.name;
       this.localAuthority.code = organisation.establishmentNumber;
@@ -171,7 +179,8 @@ class userAssertionModel {
       this.organisation.type.name = organisation.type.name;
     }
 
-    this.organisation.companyRegistrationNumber = organisation.companyRegistrationNumber;
+    this.organisation.companyRegistrationNumber =
+      organisation.companyRegistrationNumber;
 
     return this;
   }
@@ -183,15 +192,19 @@ class userAssertionModel {
       let value = assertion.Value;
       const requiredSubs = value.match(/__([a-z,0-9,\-,.]{1,})__/gi) || [];
       requiredSubs.forEach((sub) => {
-        const subPath = sub.slice(2, sub.length - 2)
-        const externalIdentifer = this.user.externalIdentifiers.find(x => x.key.toLowerCase() == subPath.toLowerCase());
-        const assertionValue = assertionValues.find(x => x.path.toLowerCase() == subPath.toLowerCase());
-        let subValue = '';
+        const subPath = sub.slice(2, sub.length - 2);
+        const externalIdentifer = this.user.externalIdentifiers.find(
+          (x) => x.key.toLowerCase() == subPath.toLowerCase(),
+        );
+        const assertionValue = assertionValues.find(
+          (x) => x.path.toLowerCase() == subPath.toLowerCase(),
+        );
+        let subValue = "";
 
         if (externalIdentifer) {
-          subValue = externalIdentifer.value || '';
+          subValue = externalIdentifer.value || "";
         } else if (assertionValue) {
-          subValue = assertionValue.value || '';
+          subValue = assertionValue.value || "";
         }
 
         value = value.replace(`__${subPath}__`, subValue);
@@ -215,7 +228,7 @@ class userAssertionModel {
       email: this.user.email,
       kts_id: this.user.ktsId,
       Assertions: this.assertions,
-    }
+    };
   }
 }
 
