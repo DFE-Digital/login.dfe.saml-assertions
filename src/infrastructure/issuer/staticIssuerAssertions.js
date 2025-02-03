@@ -488,6 +488,11 @@ const issuerAssertions = [
         FriendlyName: "sAMAccountName",
       },
       {
+        Type: "urn:oid:2.5.4.10",
+        Value: "__organisation.name__",
+        FriendlyName: "organisationName",
+      },
+      {
         Type: "urn:oid:2.5.4.42",
         Value: "__user.firstName__",
         FriendlyName: "firstName",
