@@ -493,6 +493,11 @@ const issuerAssertions = [
         FriendlyName: "organisationName",
       },
       {
+        Type: "https://sa.education.gov.uk/idp/org/legalName",
+        Value: "organisation.legalName__",
+        FriendlyName: "organisationLegalName",
+      },
+      {
         Type: "urn:oid:2.5.4.42",
         Value: "__user.firstName__",
         FriendlyName: "firstName",
