@@ -494,7 +494,7 @@ const issuerAssertions = [
       },
       {
         Type: "https://sa.education.gov.uk/idp/org/legalName",
-        Value: "organisation.legalName__",
+        Value: "__organisation.legalName__",
         FriendlyName: "organisationLegalName",
       },
       {
