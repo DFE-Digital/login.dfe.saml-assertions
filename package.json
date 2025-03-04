@@ -23,8 +23,8 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
-    "applicationinsights": "^2.0.0",
-    "express": "^4.18.1",
+    "applicationinsights": "^2.9.6",
+    "express": "^4.21.2",
     "login.dfe.api.auth": "github:DFE-Digital/login.dfe.api.auth#v2.3.3",
     "login.dfe.config.schema.common": "git+https://github.com/DFE-Digital/login.dfe.config.schema.common.git#v2.1.6",
     "login.dfe.dao": "^5.0.3",
@@ -32,9 +32,9 @@
     "login.dfe.healthcheck": "github:DFE-Digital/login.dfe.healthcheck#v3.0.2",
     "login.dfe.jwt-strategies": "github:DFE-Digital/login.dfe.jwt-strategies#v4.1.1",
     "login.dfe.winston-appinsights": "github:DFE-Digital/login.dfe.winston-appinsights#v5.0.3",
-    "nodemon": "^3.1.4",
-    "simpl-schema": "^3.4.1",
-    "winston": "^3.8.2"
+    "nodemon": "^3.1.9",
+    "simpl-schema": "^3.4.6",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
