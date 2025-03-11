@@ -1,6 +1,6 @@
 {
   "name": "login.dfe.saml-assertions",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DFE-Digital/login.dfe.saml-assertions.git"
