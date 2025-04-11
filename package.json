@@ -34,7 +34,8 @@
     "login.dfe.winston-appinsights": "github:DFE-Digital/login.dfe.winston-appinsights#v5.0.3",
     "nodemon": "^3.1.9",
     "simpl-schema": "^3.4.6",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
