@@ -49,6 +49,7 @@ class userAssertionModel {
     this.organisation = {
       id: undefined,
       name: undefined,
+      legalName: undefined,
       status: {
         id: undefined,
         code: undefined,
@@ -133,6 +134,7 @@ class userAssertionModel {
   setOrganisationPropertiesFromOrganisation(organisation) {
     this.organisation.id = organisation.id;
     this.organisation.name = organisation.name;
+    this.organisation.legalName = organisation.LegalName;
     this.organisation.establishmentNumber = organisation.establishmentNumber;
     this.organisation.urn = organisation.urn;
     this.organisation.uid = organisation.uid;
