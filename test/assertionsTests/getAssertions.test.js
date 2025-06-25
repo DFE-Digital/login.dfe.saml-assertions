@@ -127,6 +127,7 @@ describe("When getting issuer assertions", () => {
 
     logger = require("./../../src/infrastructure/logger");
     logger.error = () => ({});
+    logger.debug = () => ({});
     getOrganisations = require("./../../src/infrastructure/organisation");
     getOrganisationsById = jest.fn().mockReturnValue(org1);
     getOrganisations.getOrganisationById = getOrganisationsById;

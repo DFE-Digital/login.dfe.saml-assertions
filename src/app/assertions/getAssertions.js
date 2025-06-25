@@ -29,7 +29,7 @@ const get = async (req, res) => {
     if (!user) {
       return res.status(404).send();
     }
-    console.log("User sub -" + user.sub);
+    logger.debug(`User sub -${user.sub}`);
 
     let userOrganisation;
     if (req.params.organisationId) {
