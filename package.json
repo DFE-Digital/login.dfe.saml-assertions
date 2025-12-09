@@ -23,32 +23,32 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "login.dfe.api-client": "^1.0.10",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "login.dfe.api-client": "^1.0.58",
     "login.dfe.api.auth": "^2.3.4",
     "login.dfe.audit.winston-sequelize-transport": "^3.2.6",
-    "login.dfe.config.schema.common": "^2.1.7",
+    "login.dfe.config.schema.common": "^2.1.8",
     "login.dfe.dao": "^5.0.6",
     "login.dfe.express-error-handling": "^3.0.5",
     "login.dfe.healthcheck": "^3.0.3",
     "login.dfe.jwt-strategies": "^4.1.2",
-    "nodemon": "^3.1.9",
+    "nodemon": "^3.1.11",
     "simpl-schema": "^3.4.6"
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "eslint": "^9.21.0",
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
     "eslint-formatter-junit": "^8.40.0",
-    "eslint-plugin-jest": "^28.11.0",
+    "eslint-plugin-jest": "^28.14.0",
     "globals": "^15.15.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
     "jest-junit": "^16.0.0",
-    "lint-staged": "^15.4.3",
-    "node-mocks-http": "^1.16.2",
-    "prettier": "^3.5.3"
+    "lint-staged": "^15.5.2",
+    "node-mocks-http": "^1.17.2",
+    "prettier": "^3.7.4"
   },
   "jest": {
     "testEnvironment": "node",
