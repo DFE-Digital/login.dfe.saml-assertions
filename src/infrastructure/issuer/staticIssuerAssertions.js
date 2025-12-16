@@ -465,6 +465,21 @@ const issuerAssertions = [
     ],
   },
   {
+    id: "6ee57519-7df5-4372-8e21-209e7e8c9358", // COLLECT BLADE DEV
+    assertions: [
+      {
+        Type: "urn:oid:2.5.4.45",
+        Value: "__user.numericIdentifier__",
+        FriendlyName: "userId",
+      },
+      {
+        Type: "urn:oid:0.9.2342.19200300.100.1.1",
+        Value: "__user.textIdentifier__",
+        FriendlyName: "userName",
+      },
+    ],
+  },
+  {
     id: "09abfb35-3d09-41a7-9e4e-b8512b9b7d5e", // School 2 School
     assertions: [
       {
