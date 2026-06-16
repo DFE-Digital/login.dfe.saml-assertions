@@ -25,11 +25,11 @@
   "dependencies": {
     "dotenv": "^16.6.1",
     "express": "^4.22.1",
-    "login.dfe.api-client": "^1.0.58",
+    "login.dfe.api-client": "^1.0.69",
     "login.dfe.api.auth": "^2.3.4",
     "login.dfe.audit.winston-sequelize-transport": "^3.2.6",
     "login.dfe.config.schema.common": "^2.1.8",
-    "login.dfe.dao": "^5.0.6",
+    "login.dfe.dao": "^5.0.7",
     "login.dfe.express-error-handling": "^3.0.5",
     "login.dfe.healthcheck": "^3.0.3",
     "login.dfe.jwt-strategies": "^4.1.2",
