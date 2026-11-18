@@ -480,6 +480,36 @@ const issuerAssertions = [
     ],
   },
   {
+    id: "c3a5de54-9039-4763-9c5c-b46289cc601c", // COLLECT MODERN (test)
+    assertions: [
+      {
+        Type: "urn:oid:2.5.4.45",
+        Value: "__user.numericIdentifier__",
+        FriendlyName: "userId",
+      },
+      {
+        Type: "urn:oid:0.9.2342.19200300.100.1.1",
+        Value: "__user.textIdentifier__",
+        FriendlyName: "userName",
+      },
+    ],
+  },
+  {
+    id: "1f9b82ab-e10d-4781-b53a-dce270c49b80", // COLLECT MODERN (pre-prod)
+    assertions: [
+      {
+        Type: "urn:oid:2.5.4.45",
+        Value: "__user.numericIdentifier__",
+        FriendlyName: "userId",
+      },
+      {
+        Type: "urn:oid:0.9.2342.19200300.100.1.1",
+        Value: "__user.textIdentifier__",
+        FriendlyName: "userName",
+      },
+    ],
+  },
+  {
     id: "09abfb35-3d09-41a7-9e4e-b8512b9b7d5e", // School 2 School
     assertions: [
       {
